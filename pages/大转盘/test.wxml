@@ -1,0 +1,4 @@
+<!--pages/test/test.wxml-->
+<view style="width:100%;height:600rpx;background:#666666;">
+  <view animation="{{animationData}}" style="width:500rpx;height:500rpx;background-image:url('https://qmzgcdn.boc7.net/welfare/free_game/00logo.png');background-size:100% 100%;border-radius:50%;margin:0 auto;"></view>
+</view>

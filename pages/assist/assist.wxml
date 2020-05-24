@@ -1,0 +1,79 @@
+<!--pages/assist/assist.wxml-->
+<view class='container'>
+  <view class='banner'>
+    <image src="https://qmzgcdn.boc7.net/test/banner.jpg"></image>
+  </view>
+  <view class='rotor'>
+    <image src="https://qmzgcdn.boc7.net/test/notice.jpg"></image>
+    <swiper autoplay="false" interval="2500" duration="8000" circular="true" next-margin="320rpx" class="notifytext">  
+      <block wx:for="{{speaknotify}}">  
+        <swiper-item>  
+        <block wx:if="{{item.type == 0}}">
+          <text>{{item.wx_nickname}}成功兑换了{{item.goods_name}}</text>
+          </block>
+        <block wx:if="{{item.type == 1}}">
+          <text>{{item.wx_nickname}}抽中了{{item.goods_name}}</text>
+        </block>
+        </swiper-item>  
+      </block>  
+    </swiper>  
+  </view>
+  <view class='pirate'>
+    <navigator wx:for="{{actives}}" url="{{item.url}}" open-type="navigate" style="background-image:url({{item.big_logo}})" class="assistactivity">
+      <text>{{item.start_time}}~{{item.end_time}}</text>
+    </navigator>
+  </view>
+  <view style="width:700rpx;margin:24rpx auto;border-radius:12rpx;overflow:hidden;">
+    <ad unit-id="adunit-9251b83f4b8b7d8a"></ad>
+  </view>
+  <view class='title'>助攻排行榜</view>
+  <view class='list'>
+    <view class='list_title'>
+      <view data-type='0' bindtap='change_color' class='{{color == 0 ?"active":""}}'>今日排行榜</view>
+      <view data-type='3' bindtap='change_color' class='{{color == 3 ?"active":""}}'>周排行榜</view>
+    </view>
+    <view class='skin' style="height:{{skinheight}}">
+      <block wx:if="{{color == 0}}">
+        <view class='box' wx:for="{{day}}" wx:for-index="key">
+          <image wx:if="{{key<3}}" src="{{ranknum[key]}}" class="width38_height52"></image>
+          <text wx:else class="width38_height52 size34_999">{{key+1}}</text>
+          <view class='skin_person'>
+            <view class='person_title'>
+              <image src='{{item.help_headimgurl}}'></image>
+              <text>{{item.help_name}}</text>
+            </view>
+            <text class='person_time'>助攻了{{item.moneys}}元</text>
+            <view class="thinline"></view>
+          </view>
+        </view>
+        <view hidden='{{day.length>0}}' class="mask">
+          <image src="https://qmzgcdn.boc7.net/test/unstartactive.png"></image>
+          <text>活动还未开始，敬请期待</text>
+        </view>
+      </block>
+      <block wx:if="{{color == 3}}">
+        <view class='box' wx:for="{{week}}" wx:for-index="key">
+          <image wx:if="{{key<3}}" src="{{ranknum[key]}}" class="width38_height52"></image>
+          <text wx:else class="width38_height52 size34_999">{{key+1}}</text>
+          <view class='skin_person'>
+            <view class='person_title'>
+              <image src='{{item.help_headimgurl}}'></image>
+              <text>{{item.help_name}}</text>
+            </view>
+            <text class='person_time'>助攻了{{item.moneys}}元</text>
+            <view class="thinline"></view>
+          </view>
+        </view>
+        <view hidden='{{week.length>0}}' class="mask">
+          <image src="https://qmzgcdn.boc7.net/test/unstartactive.png"></image>
+          <text>活动还未开始，敬请期待</text>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+<view style="top:0;background:#333333;width:100%;height:100%;position:fixed;z-index:1;" hidden="{{ loadingHidden }}">
+  <loading>
+      加载中...
+  </loading>
+</view>

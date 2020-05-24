@@ -1,0 +1,45 @@
+/* pages/sharepng/sharepng.wxss */
+page {
+  width: 100%;
+  height: auto;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  background: #000000;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 80rpx 0;
+  background-image: url('https://qmzgcdn.boc7.net/test/qr_markimg.jpg');
+  background-size: 100% 100%;
+  position: relative;
+}
+
+.container>view>text{
+  font-family:MicrosoftYaHei;
+  font-size:34rpx;
+  color:#333333;
+}
+
+.container>view>image:nth-child(1){
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 50%;
+}
+
+.poster{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height:900rpx;width:690rpx;
+  background:#ffffff;
+  border-radius:20rpx;
+  position:absolute;
+  top:80rpx;left:0;right:0;
+  margin:auto;
+}

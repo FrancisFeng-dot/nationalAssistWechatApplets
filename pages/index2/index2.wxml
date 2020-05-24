@@ -1,0 +1,287 @@
+<view class='container'>
+  <official-account style=""></official-account>
+  <swiper autoplay="true" interval="3000" duration="2000" circular="true" indicator-dots="true" class="raiders">  
+    <block wx:for="{{activebanner}}" wx:for-index="key"> 
+      <swiper-item>  
+        <block wx:if="{{item.type==0}}"> 
+          <navigator url="../{{item.url}}/{{item.url}}" open-type="{{item.url=='makebattle'?'switchTab':'navigate'}}" style="background-image:url('{{item.big_logo}}');">
+          </navigator>
+        </block> 
+        <block wx:if="{{item.type==1}}"> 
+          <navigator url="../assist/assist" open-type="switchTab" style="background-image:url('{{item.big_logo}}');">
+          </navigator>
+        </block> 
+        <block wx:if="{{item.type==2}}"> 
+          <navigator target="miniProgram" path="{{item.game_url}}" app-id="{{item.game_appid}}" style="background-image:url('{{item.big_logo}}');"></navigator>
+        </block> 
+        <block wx:if="{{item.type==3}}"> 
+          <view style="background-image:url('{{item.big_logo}}');" bindtap='bannerjoin' data-bannertype="3"></view>
+        </block> 
+        <block wx:if="{{item.type==4}}"> 
+          <button style="background-image:url('{{item.big_logo}}');" data-params="shengbei" bindtap="replyone" data-layertype="0"></button>
+        </block> 
+      </swiper-item>  
+    </block> 
+  </swiper>  
+  <view class='rotor'>
+    <image src="https://qmzgcdn.boc7.net/test/notice.jpg"></image>
+    <swiper autoplay="false" interval="2500" duration="8000" circular="true" next-margin="320rpx" class="notifytext">  
+      <block wx:for="{{speaknotify}}">  
+        <swiper-item>  
+          <block wx:if="{{item.type == 0}}">
+            <text>{{item.wx_nickname}}成功兑换了{{item.goods_name}}</text>
+            </block>
+          <block wx:if="{{item.type == 1}}">
+            <text>{{item.wx_nickname}}抽中了{{item.goods_name}}</text>
+          </block>
+        </swiper-item>  
+      </block>  
+    </swiper>  
+    <view style="width:100%;height:1px;background:#EBEBEB;position:absolute;bottom:0;left:0;"></view>
+  </view>
+  <view class="indextable">
+    <navigator url="../makebattle/makebattle" open-type="switchTab" id="makebattle">
+      <image src="https://qmzgcdn.boc7.net/test/icon_everydaysign.png"></image>
+      <text>每日签到</text>
+    </navigator>
+    <!-- <button data-params="gift_center" bindtap="replyone" data-layertype="0">
+    </button> -->
+    <!-- <button bindtap='shareredbag' data-index="{{envelopestatus==1?'1':'2'}}">
+      <image src="https://qmzgcdn.boc7.net/test/icon_moneyred.png"></image>
+      <text>现金红包</text>
+    </button> -->
+    <navigator url="{{hastoken==1?'../moneybag/moneybag':'../login/login'}}" open-type="navigate">
+      <image src="https://qmzgcdn.boc7.net/test/icon_moneyred.png"></image>
+      <text>现金抽奖</text>
+    </navigator>
+    <navigator target="miniProgram" path="{{gamelist1[0].game_url}}" app-id="{{gamelist1[0].game_appid}}" id="equipment" data-indextype="gamelist1" bindtap="clickgame">
+      <image src="{{gamelist1[0].big_img}}"></image>
+      <text>{{gamelist1[0].game_name}}</text>
+    </navigator>
+    <navigator target="miniProgram" path="{{gamelist2[0].game_url}}" app-id="{{gamelist2[0].game_appid}}" id="moregame" data-indextype="gamelist2" bindtap="clickgame">
+      <image src="{{gamelist2[0].big_img}}"></image>
+      <text>{{gamelist2[0].game_name}}</text>
+    </navigator>
+    <navigator target="miniProgram" path="pages/base/redirect/index?routeKey=PROMOTION_GIFT_PACKAGE&p=PA01&s=act_travel_share&wtagid=104.72.43" app-id="wx06a561655ab8f5b2" id="freelottery">
+      <image src="https://qmzgcdn.boc7.net/test/icon_freelottery.gif"></image>
+      <text>免费福利</text>
+    </navigator>
+  </view>
+  <view style="width:700rpx;margin:20rpx auto;border-radius:12rpx;overflow:hidden;">
+    <ad unit-id="adunit-1fa8930e5673b97a" bindload="adsload1" binderror="adsload2"></ad>
+  </view>
+  <view style="background:#ffffff;padding:20rpx 0;">
+    <view class="everydaylottery">
+      <text>每日抽奖</text>
+      <navigator url="../freelottery/freelottery" open-type="navigate">
+        <text>查看中奖记录</text>
+        <image src="https://qmzgcdn.boc7.net/test/viewalllottery.png"></image>
+      </navigator>
+    </view>
+    <navigator url="../lotterydetail/lotterydetail?id={{item.id}}" open-type="navigate" style="width:710rpx;border-radius:20rpx;background:#ffffff;margin:0 auto;margin-top:20rpx;" wx:for="{{lotteryactive}}">
+      <view class="prizethumb" style="background-image:url({{item.cover_img}});">
+        <view>
+          <view>
+            <!-- <text hidden='{{!item.dayleft}}'>{{item.dayleft}}天</text> -->
+            <block wx:if="{{item.time_left>0}}">
+              <view class="lotterycountdown">
+                <text>{{item.hours}}</text>:<text>{{item.minutes}}</text>:<text>{{item.seconds}}</text>
+              </view>
+              <text>后开奖</text>
+            </block>
+            <block wx:if="{{item.time_left==0}}">
+              <text style="margin-left:12rpx;">已开奖</text>
+            </block>
+          </view>
+          <text>已有{{item.count}}人参与</text>
+          <view></view>
+        </view>
+        <block wx:if="{{item.type==1}}">
+          <navigator target="miniProgram" path="{{item.url}}" app-id="{{item.appid}}">{{item.sponsor_name}} 赞助</navigator>
+        </block>
+        <block wx:if="{{item.type==2}}">
+          <text data-params="{{item.num}}" catchtap="replyone" data-layertype="0">{{item.sponsor_name}} 赞助</text>
+        </block>
+      </view>
+      <view class="lotterygoodsdetail">
+        <view>
+          <text style="color:#1A1A1A;font-size:32rpx;">{{item.goods_name}}</text>
+          <text style="color:#FE4141;font-size:24rpx;margin-top:14rpx;">价值{{item.money}}元</text>
+        </view>
+        <block wx:if="{{item.is_join==0}}">
+          <button style="background:#FE4141;color:#ffffff;">免费抽奖</button>
+        </block>
+        <block wx:if="{{item.is_join==1}}">
+          <button style="background:#ffffff;color:#FE4141;border:1px solid #FE4141;">已参与</button>
+        </block>
+      </view>
+    </navigator>
+  </view>
+  <!-- <view>
+    <view class="battleexchange">
+      <text>战力兑换商品</text>
+      <view>
+        <image src="https://qmzgcdn.boc7.net/test/mybattlestar.png"></image>
+        <block wx:if="{{hastoken==0}}">
+          <text>登录后可查看战力</text>
+        </block>
+        <block wx:if="{{hastoken==1}}">
+          <text>我的战力：{{battle}}</text>
+        </block>
+      </view>
+    </view>
+  </view> -->
+  <view class='mask' hidden='{{contactlayer}}'>
+    <block wx:if="{{giftorbattle == 0}}">
+      <view class='bags'>
+        <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closeexchange" bindtap='closecontact'></image>
+        <text>在客服会话中回复“1”</text>
+        <button open-type="contact" session-from="{{contactparams}}">确定</button>
+      </view>
+    </block>
+    <!-- <block wx:if="{{giftorbattle == 1}}">
+      <view class='bags' style="width:540rpx;height: 440rpx;padding:40rpx 0;">
+        <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closeexchange" bindtap='closecontact'></image>
+        <image src="https://qmzgcdn.boc7.net/test/battle_insufficient.png" style="width:144rpx;height:104rpx;"></image>
+        <text style="font-size:32rpx;">战力不足</text>
+        <text style="font-size:28rpx;color:#808080;width:392rpx;margin-top: 36rpx;">可通过每日签到、移动积分兑换、邀请好友和试玩产品获得战力</text>
+        <navigator open-type='switchTab' url="../makebattle/makebattle" class="tomakebattle">签到拿战力</navigator>
+      </view>
+    </block> -->
+    <block wx:if="{{giftorbattle == 4}}">
+      <view class='bags' style="width:580rpx;height: 650rpx;padding:60rpx 0 80rpx;background-image:url('https://qmzgcdn.boc7.net/test/squareball_back1.png');background-size:100% 100%;">
+        <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closeexchange" bindtap='closecontact'></image>
+        <view style="width:352rpx;font-family:Source Han Sans CN;font-size:32rpx;color:#333333;text-align:center;">恭喜您在《{{squareballparams.gamename}}》大奖赛中获得<text style="color:#FF6A42;">第{{squareballparams.ranking}}名</text></view>
+        <view style="font-size:32rpx;margin-top:60rpx;">获奖奖品为：<text style="color:#FF6A42;">{{squareballparams.prizename}}</text></view>
+        <button open-type='share' class="sharetogether" style="width: 414rpx;height: 74rpx;line-height: 74rpx;border-radius: 38rpx;background-image: url('https://qmzgcdn.boc7.net/test/squareball_btn1.png');background-size:100% 100%;margin-top:90rpx;" bindtap="exchangesquare">分享好友一起领</button>
+        <view style="font-family:MicrosoftYaHei;font-size:28rpx;color:#333333;" bindtap="exchangesquare">立即领取></view>
+      </view>
+    </block>
+    <block wx:if="{{giftorbattle == 5}}">
+      <view class='bags'>
+        <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closeexchange" bindtap='closecontact'></image>
+        <text>领取奖励成功，请到我的界面查看战力或收益记录</text>
+        <button bindtap='closecontact'>确定</button>
+      </view>
+    </block>
+  </view>
+  <view class='cover' hidden='{{masklayer}}'>
+    <image src="https://qmzgcdn.boc7.net/test/closemore.png" class="closepos" bindtap='closemask'></image>
+    <!-- <block wx:if="{{layertype == 1}}">
+        <block wx:if="{{opentype == 1}}"> -->
+          <navigator class='envelopelayer1' url="{{hastoken==1?'../moneybag/moneybag':'../login/login'}}" open-type="navigate">
+            <!-- <button></button> -->
+            <!-- <text style="font-size:32rpx;">消耗1000战力平分</text>
+            <text style="font-size:48rpx;">1万红包</text> -->
+          </navigator>
+        <!-- </block>
+        <block wx:if="{{opentype == 2}}">
+          <view class='envelopelayer1' bindtap='extractenvelope' data-redbagtype='{{distinguishuser}}'>
+            <view style="display:flex;flex-direction:column;justify-content:center;align-items:center;">
+              <image src="{{headimg}}" style="width:110rpx;height:110rpx;border-radius:50%;"></image>
+              <text style="font-family:MicrosoftYaHei;color:#FFF0B6;font-size:28rpx;margin-top:16rpx;">{{nickname}}</text>
+            </view>
+            <text style="font-size:34rpx;margin-top:30rpx;" hidden="{{!headimg}}">给你发了一个现金红包</text>
+          </view>
+        </block>
+        <block wx:if="{{opentype == 3}}">
+          <view class='envelopelayer2' style="justify-content: space-between;">
+            <view class="layersize2">
+              <text style="font-size:50rpx;">{{envelopereward}}元</text>
+            </view>
+            <view style="font-size:24rpx;font-family:MicrosoftYaHei;color:#FFF0B6;display:flex;">
+              已存入<navigator style="text-decoration:underline;" open-type='navigate' url="../extractq/extractq">我的收益</navigator>
+            </view>
+            <button class="againopen" bindtap='shareredbag' data-index='3'>再开四个红包</button>
+          </view>
+        </block>
+        <block wx:if="{{opentype == 4}}">
+          <view class='envelopelayer2' style="justify-content: space-between;">
+            <view class="layersize2">
+              <text>今日已领取</text>
+              <text style="font-size:38rpx;">{{envelopereward}}元</text>
+              <text style="font-size:24rpx;">明日还可继续领</text>
+            </view>
+            <view style="font-size:24rpx;font-family:MicrosoftYaHei;color:#FFF0B6;display:flex;">
+              已存入<navigator style="text-decoration:underline;" open-type='navigate' url="../extractq/extractq">我的收益</navigator>
+            </view>
+            <button class="againopen" bindtap='shareredbag' data-index='3'>再开四个红包</button>
+          </view>
+        </block>
+    </block>
+    <block wx:if="{{layertype == 2}}">
+      <view class="envelopelayer3" style="justify-content: space-between;">
+        <text style="font-family: MicrosoftYaHei;font-size:28rpx;color:#666666;">发红包-再开4个</text>
+        <view class="flop">
+          <block wx:if="{{redbagtype1 == 1}}">
+            <image src="https://qmzgcdn.boc7.net/test/tobeunlock124.png"></image>
+          </block>
+          <block wx:if="{{redbagtype1 == 2}}">
+            <image src="https://qmzgcdn.boc7.net/test/unlocked1.png" bindtap='extractenvelope' data-redbagtype='2' data-index="0" class="sharefriendopen"></image>
+          </block>
+          <block wx:if="{{redbagtype1 == 3}}">
+            <view>
+              <text style="font-family: MicrosoftYaHei;color:#FE4141;font-size:22rpx;">{{moneyarr.key1}}元</text>
+              <text style="font-family: MicrosoftYaHei;font-size:22rpx;color:#FFF9E1;text-align:center;">已存入
+              我的收益</text>
+            </view>
+          </block>
+          <block wx:if="{{redbagtype2 == 1}}">
+            <image src="https://qmzgcdn.boc7.net/test/tobeunlock148.png"></image>
+          </block>
+          <block wx:if="{{redbagtype2 == 2}}">
+            <image src="https://qmzgcdn.boc7.net/test/unlocked1.png" bindtap='extractenvelope' data-redbagtype='2' data-index="1" class="sharefriendopen"></image>
+          </block>
+          <block wx:if="{{redbagtype2 == 3}}">
+            <view>
+              <text style="font-family: MicrosoftYaHei;color:#FE4141;font-size:22rpx;">{{moneyarr.key2}}元</text>
+              <text style="font-family: MicrosoftYaHei;font-size:22rpx;color:#FFF9E1;text-align:center;">已存入
+              我的收益</text>
+            </view>
+          </block>
+          <block wx:if="{{redbagtype3 == 1}}">
+            <image src="https://qmzgcdn.boc7.net/test/tobeunlock172.png"></image>
+          </block>
+          <block wx:if="{{redbagtype3 == 2}}">
+            <image src="https://qmzgcdn.boc7.net/test/unlocked1.png" bindtap='extractenvelope' data-redbagtype='2' data-index="2" class="sharefriendopen"></image>
+          </block>
+          <block wx:if="{{redbagtype3 == 3}}">
+            <view>
+              <text style="font-family: MicrosoftYaHei;color:#FE4141;font-size:22rpx;">{{moneyarr.key3}}元</text>
+              <text style="font-family: MicrosoftYaHei;font-size:22rpx;color:#FFF9E1;text-align:center;">已存入
+              我的收益</text>
+            </view>
+          </block>
+          <block wx:if="{{redbagtype4 == 1}}">
+            <image src="https://qmzgcdn.boc7.net/test/tobeunlock196.png"></image>
+          </block>
+          <block wx:if="{{redbagtype4 == 2}}">
+            <image src="https://qmzgcdn.boc7.net/test/unlocked1.png" bindtap='extractenvelope' data-redbagtype='2' data-index="3" class="sharefriendopen"></image>
+          </block>
+          <block wx:if="{{redbagtype4 == 3}}">
+            <view>
+              <text style="font-family: MicrosoftYaHei;color:#FE4141;font-size:22rpx;">{{moneyarr.key4}}元</text>
+              <text style="font-family: MicrosoftYaHei;font-size:22rpx;color:#FFF9E1;text-align:center;">已存入
+              我的收益</text>
+            </view>
+          </block>
+        </view>
+        <button class="invitefriends" open-type='share'>发红包，邀请好友来领</button>
+        <text style="font-family: MicrosoftYaHei;font-size:22rpx;color:#666666;">每邀请一位新用户再领一个红包</text>
+      </view>
+    </block> -->
+  </view>
+  <navigator open-type='switchTab' url="../makebattle/makebattle" class="signanimation jumpmakebattle"></navigator>
+  <!-- <view class="signanimation" style="position:fixed;top:-12rpx;right:22rpx;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+    <view style="width: 0;height: 0;border-width: 16rpx;border-style: solid;border-color: transparent transparent #fd6b3f transparent;"></view>
+    <view style="height:60rpx;line-height:60rpx;background:#fd6b3f;border-radius:30rpx;font-size:24rpx;color:#ffffff;text-align:center;padding:0 10rpx;">点击添加到我的小程序</view>
+  </view> -->
+  <view class="signanimation" style="width:280rpx;height:70rpx;position:fixed;top:10rpx;right:32rpx;display:flex;flex-direction:column;justify-content:center;align-items:center;background-image:url('https://qmzgcdn.boc7.net/test/addmyapp1.png');background-size:100% 100%;">
+    <view style="font-size:24rpx;color:#ffffff;margin-top:4rpx;">点击添加到我的小程序</view>
+  </view>
+</view>
+<view style="top:0;background:#333333;width:100%;height:100%;position:fixed;z-index:1;" hidden="{{loadingHidden}}">
+  <loading>
+      加载中...
+  </loading>
+</view>

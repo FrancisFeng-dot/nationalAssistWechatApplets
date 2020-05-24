@@ -1,0 +1,23 @@
+/**app.wxss**/
+/* 传奇来了
+全民游戏榜
+教主之家
+全民方块球
+热血合击
+西游后传
+三小王者
+热血修仙
+逐日战神*/
+
+/*{
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "img/unindex.jpg",
+        "selectedIconPath": "img/index.jpg"
+      },
+      {
+        "pagePath": "pages/assist/assist",
+        "text": "助攻",
+        "iconPath": "img/unrocket.jpg",
+        "selectedIconPath": "img/select_rocket.jpg"
+      }*/

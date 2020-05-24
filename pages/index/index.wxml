@@ -1,0 +1,386 @@
+<!--pages/makebattle/makebattle.wxml-->
+<view class="container">
+  <!-- <view class="signinrecord">
+    <view>
+      <view class="mybattle_show">
+        <view>
+          <image src="https://qmzgcdn.boc7.net/test/mybattlestar.png"></image>
+          <text>我的战力</text>
+        </view>
+        <text>{{battle}}</text>
+        <view>
+          <navigator url="../index/battlerank" open-type="navigate">战力排行</navigator>
+          <navigator url="{{hastoken==1?'../combatrecord/combatrecord':'../login/login'}}" open-type="navigate">战力记录</navigator>
+        </view>
+      </view>
+      <view class="tribute_battle">
+        <text>徒弟贡献战力:</text>
+        <block wx:if="{{hastoken==0}}">
+          <navigator url='../login/login' open-type="navigate" style="background-image:url('https://qmzgcdn.boc7.net/test/{{battlereceive_back}}');">
+            <text style="margin-bottom:12rpx;">暂无战力</text>
+          </navigator>
+        </block>
+        <block wx:if="{{hastoken==1}}">
+          <block wx:if="{{contribute_strength==0}}">
+            <view style="background-image:url('https://qmzgcdn.boc7.net/test/{{battlereceive_back}}');" bindtap='click_invitebattle' data-invitetype="0">
+              <text style="margin-bottom:12rpx;">暂无战力</text>
+            </view>
+          </block>
+          <block wx:if="{{contribute_strength>0}}">
+            <view style="background-image:url('https://qmzgcdn.boc7.net/test/{{battlereceive_back}}');" bindtap='click_invitebattle' data-invitetype="1" id="getfriendbattle">
+              <text>{{contribute_strength}}</text>
+              <text>点击领取</text>
+            </view>
+          </block>
+        </block>
+        <text bindtap='invite_friend' class="invitefriends">收徒规则></text>
+      </view>
+    </view>
+    <view>
+      <view></view>
+      <text>连续签到奖励</text>
+      <view></view>
+    </view>
+    <view>
+      <view>
+        <text>1天</text>
+        <text>2天</text>
+        <text>3天</text>
+        <text>4天</text>
+        <text>5天</text>
+        <text>6天</text>
+        <text>7天</text>
+      </view>
+      <view>
+        <image src="https://qmzgcdn.boc7.net/test/{{item.hassign==1?'battle_hassign':'battle_unhassign'}}.png" wx:for="{{signstar}}"></image>
+        <view></view>
+      </view>
+      <view>
+        <text wx:for="{{signstar}}" style="color:{{item.hassign==1?'#FE4141':'#B3B3B3'}}">+{{item.num}}</text>
+      </view>
+    </view>
+    <block wx:if="{{signin==0}}">
+      <form report-submit="true" bindsubmit="clicksign">
+        <button formType="submit" class="signbutton" id="todaysign">我要签到</button>
+      </form>
+    </block>
+    <block wx:if="{{signin==1}}">
+      <button style="background:#C7C7C7;" class="signbutton">已连续签到{{has_signnum}}天</button>
+    </block>
+  </view> -->
+  <!-- <official-account></official-account> -->
+  <!-- <view class="margint20_backfff">
+    <view class="china_mobile">
+      <image src="https://qmzgcdn.boc7.net/test/makebattle_titleleft.png"></image>
+      <text>移动积分兑换战力</text>
+      <image src="https://qmzgcdn.boc7.net/test/makebattle_titleright.png"></image>
+    </view>
+    <view class="mobile_mall">
+      <navigator url="../creditexchange/creditexchange?goods_id={{item.id}}&&battle_value={{item.battle_value}}&&mobile_points={{item.mobile_points}}&&money={{item.money}}" open-type="navigate" wx:for="{{mobile_goods}}">
+        <view>
+          <image src="https://qmzgcdn.boc7.net/test/mobilegoods_battle.png"></image>
+          <text style="margin-left:16rpx;">x {{item.battle_value}}战力</text>
+        </view>
+        <view style="margin:14rpx 0 20rpx;">
+          <text>{{item.mobile_points}}移动积分</text>
+          <text style="color:#999999;margin-left:16rpx;">价值：{{item.money}}元</text>
+        </view>
+        <button>免费兑换</button>
+      </navigator>
+    </view>
+  </view> -->
+  <!-- <view class="tasklist" style="background:#ffffff;">
+    <view>
+      <view>
+        <view class="tryplay" style="margin-left:0;margin-bottom:12rpx;">
+          <text>成功邀请一位好友</text>
+          <button>+{{consumptionbattle}}战力</button>
+        </view>
+        <text>完成{{friendcount}}/500（每日邀请好友奖励上限500人）</text>
+      </view>
+      <button open-type='share' class="invitefriends">去邀请</button>
+      <view class="thinline"></view>
+    </view>
+  </view> -->
+  <view style="background:#ffffff;width:100%;height:667rpx;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+    <view class="indexmyinfo">
+      <view>
+        <image src="{{user.headimg}}"></image>
+        <view>
+          <text>{{user.nickname}},</text>欢迎回来
+        </view>
+      </view>
+      <view>
+        <image src="https://qmzgcdn.boc7.net/welfare/free_game/myself_redbagicon.png"></image>
+        <text>{{user.mymoney}}</text>
+      </view>
+    </view>
+    <view style="display:flex;justify-content:space-between;align-items:center;">
+      <view class="pickfruit">
+        <!-- <block wx:if="{{hastoken==0}}">
+          <navigator url='../login/login' open-type="navigate" style="background-image:url('https://qmzgcdn.boc7.net/test/{{signbattlegift_back}}');">{{signinreward}}</navigator>
+        </block>
+        <block wx:if="{{hastoken==1}}"> -->
+          <block wx:if="{{signin==0}}">
+            <form report-submit="true" bindsubmit='clicksign'>
+              <button formType="submit" id="todaysign" class="signbutton signanimation" style="background-image:url('https://qmzgcdn.boc7.net/test/{{signbattlegift_back}}');">{{signinreward}}</button>
+            </form>
+          </block>
+          <block wx:if="{{signin==1}}">
+            <view style="background-image:url('https://qmzgcdn.boc7.net/test/{{signbattlegift_back}}');opacity:0.6;">已签到</view>
+          </block>
+        <!-- </block> -->
+        <text>每日签到</text>
+      </view>
+      <view class="mybattlevalue">
+        <text>我的战力</text>
+        <text>{{battle}}</text>
+        <block wx:if="{{hastoken==0}}">
+          <view bindtap='layerGetuser'>战力记录></view>
+        </block>
+        <block wx:if="{{hastoken==1}}">
+          <navigator open-type='navigate' url="../combatrecord/combatrecord">战力记录></navigator>
+        </block>
+      </view>
+      <view class="pickfruit">
+        <block wx:if="{{contribute_strength==0}}">
+          <view style="background-image:url('https://qmzgcdn.boc7.net/test/{{battlereceive_back}}');opacity:0.6;" bindtap='click_invitebattle' data-invitetype="0">暂无</view>
+        </block>
+        <block wx:if="{{contribute_strength>0}}">
+          <view style="background-image:url('https://qmzgcdn.boc7.net/test/{{battlereceive_back}}');" class="signanimation" bindtap='click_invitebattle' data-invitetype="1" id="getfriendbattle">{{contribute_strength}}</view>
+        </block>
+        <text>徒弟贡献</text>
+      </view>
+    </view>
+    <button class="inviteapprent invitefriends" open-type='share'>收徒得战力+{{consumptionbattle}}</button>
+    <text style="font-family:SourceHanSansCN-Normal;color:#333333;font-size:24rpx;margin:20rpx auto 40rpx;">师父每天可获徒弟今日战力的10%</text>
+    <view class="funcpos">
+      <!-- <view bindtap="attentionpublic">
+        <image src="https://qmzgcdn.boc7.net/test/icon_tomask1.png"></image>
+        <text>做任务</text>
+      </view> -->
+      <block wx:if="{{hastoken==0}}">
+        <view bindtap='layerGetuser'>
+          <image src="https://qmzgcdn.boc7.net/test/icon_tolottery1.png"></image>
+          <text>抽奖</text>
+        </view>
+      </block>
+      <block wx:if="{{hastoken==1}}">
+        <navigator open-type='navigate' url="../moneybag/moneybag">
+          <image src="https://qmzgcdn.boc7.net/test/icon_tolottery1.png"></image>
+          <text>抽奖</text>
+        </navigator>
+      </block>
+      <navigator open-type='navigate' url="./battlerank">
+        <image src="https://qmzgcdn.boc7.net/test/icon_battlerank1.png"></image>
+        <text>战力排行</text>
+      </navigator>
+    </view>
+  </view>
+  <view style="width:700rpx;margin:0 auto;border-radius:12rpx;overflow:hidden;margin-top:20rpx;">
+    <ad unit-id="adunit-ef0489c1520df864"></ad>
+  </view>
+  <view class="menutitle margint20_backfff">
+    <image src="https://qmzgcdn.boc7.net/test/makebattle_titleleft.png"></image>
+    <text>战力兑换商品</text>
+    <image src="https://qmzgcdn.boc7.net/test/makebattle_titleright.png"></image>
+  </view>
+  <view style="width:100%;background:#ffffff;">
+    <view class="redemptionmall">
+      <view wx:for="{{goodslist}}" wx:for-index="key" bindtap='redeemgoods' data-index="{{key}}">
+        <image src="{{item.big_img}}"></image>
+        <text>{{item.goods_name}}</text>
+        <view>
+          <block wx:if="{{item.battle >= 10000}}">
+          <text style="font-size:26rpx;color:#FE4141;">{{item.battle/10000}}w战力</text>
+          </block>
+          <block wx:if="{{item.battle < 10000}}">
+          <text style="font-size:26rpx;color:#FE4141;">{{item.battle}}战力</text>
+          </block>
+          <text style="font-size:20rpx;color:#999999;margin-left:10rpx;">价值：{{item.money}}元</text>
+        </view>
+        <view>
+          <image src="https://qmzgcdn.boc7.net/test/freeexchange.png" style="width:28rpx;height:20rpx;"></image>
+          <text style="font-size:24rpx;color:#FE4141;margin-left:16rpx;">免费兑换</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="tryplay">
+    每试玩一个产品提升<text>{{needbattle}}</text>战力
+  </view>
+  <view class="gamelist">
+    <view>
+      <view wx:for="{{gamelist}}" wx:for-index="key">
+        <block wx:if="{{item.type==0}}">
+          <navigator bindtap='clickgame' data-index="{{key}}" target="miniProgram" path="{{item.game_url}}" app-id="{{item.game_appid}}" class="clickjoingame">
+            <view style="background-image:url('{{item.big_img}}')">
+              <block wx:if="{{item.has_play==1}}">
+                <view></view>
+                <view>已领取</view>
+              </block>
+            </view>
+            <text>{{item.game_name}}</text>
+          </navigator>
+        </block> 
+        <block wx:if="{{item.type==1}}">
+          <view bindtap='clickgame' data-index="{{key}}" class="clickjoingame">
+            <view style="background-image:url('{{item.big_img}}')">
+              <block wx:if="{{item.has_play==1}}">
+                <view></view>
+                <view>已领取</view>
+              </block>
+            </view>
+            <text>{{item.game_name}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class='alayer' hidden='{{masklayer}}'>
+    <block wx:if="{{layertype==1}}">
+    <view class='bags'>
+      <text>试玩成功，{{needbattle}}战力已存入战力余额</text>
+      <button bindtap='closemask'>确定</button>
+    </view>
+    </block>
+    <block wx:if="{{layertype==2}}">
+    <view class='bags' style="width:580rpx;height:550rpx;">
+      <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closepos" bindtap='closemask'></image>
+      <image src="https://qmzgcdn.boc7.net/test/receive_strength.png" style="width:192rpx;height:146rpx;"></image>
+      <text style="font-size:30rpx;">您已领取徒弟{{contribute_strength2}}战力</text>
+      <button style="width: 340rpx;" open-type='share' class="invitefriends">收徒可得{{consumptionbattle}}战力</button>
+      <view class="charge_reminderswitch">
+        <block wx:if="{{remain_signin==1}}">
+          <image src="https://qmzgcdn.boc7.net/test/choice_chargeswitch.png" bindtap="switch_remain" data-remaintype="0"></image>
+        </block>
+        <block wx:if="{{remain_signin==0}}">
+          <image src="https://qmzgcdn.boc7.net/test/unchoice_chargeswitch.png" bindtap="switch_remain" data-remaintype="1"></image>
+        </block>
+        <text>提醒我明日来领取战力</text>
+      </view>
+    </view>
+    </block>
+    <block wx:if="{{layertype==3}}">
+    <view class='bags' style="width:580rpx;height:550rpx;">
+      <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closepos" bindtap='closemask'></image>
+      <image src="https://qmzgcdn.boc7.net/test/nowon.jpg" style="width:128rpx;height:128rpx;"></image>
+      <text style="font-size:30rpx;">您还没有战力可以领取哦~</text>
+      <button style="width: 340rpx;" open-type='share' class="invitefriends">收徒可得{{consumptionbattle}}战力</button>
+      <view class="charge_reminderswitch">
+        <block wx:if="{{remain_signin==1}}">
+          <image src="https://qmzgcdn.boc7.net/test/choice_chargeswitch.png" bindtap="switch_remain" data-remaintype="0"></image>
+        </block>
+        <block wx:if="{{remain_signin==0}}">
+          <image src="https://qmzgcdn.boc7.net/test/unchoice_chargeswitch.png" bindtap="switch_remain" data-remaintype="1"></image>
+        </block>
+        <text>提醒我明日来领取战力</text>
+      </view>
+    </view>
+    </block>
+    <block wx:if="{{layertype==4}}">
+    <view class="invite_friend_battle">
+      <button open-type='share' class="invitefriends"></button>
+      <image src="https://qmzgcdn.boc7.net/test/closemore.png" bindtap='closemask'></image>
+    </view>
+    </block>
+    <block wx:if="{{layertype==5}}">
+    <view class='bags' style="width:580rpx;height:400rpx;">
+      <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closepos" bindtap='closemask'></image>
+      <text style="margin-top:40rpx;">在客服会话页面回复“1”</text>
+      <button open-type='contact' session-from='shengbei' id="contactserv">
+        <text>确定</text>
+      </button>
+    </view>
+    </block>
+    <block wx:if="{{layertype == 6}}">
+      <view class="bags" style="height:400rpx;padding:64rpx 0;background:#ffffff;width:548rpx;">
+        <text class="size30_color333">温馨提示</text>
+        <text class="size28_color333" style="text-align:center;">需要开启微信用户授权</text>
+        <view style="display:flex;">
+            <button class="subscription" style="background:#B3B3B3;width:190rpx;margin-top:0;" bindtap='closemask'>
+              <text>再想想</text>
+            </button>
+            <button id="authorization" class="subscription" open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo" wx:if="{{canIUse}}" style="margin-left:30rpx;width:190rpx;margin-top:0;">
+              <text>确定</text>
+            </button>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{layertype == 7}}">
+      <view class="bags" style="height:620rpx;background:#ffffff;padding:40rpx 0;">
+        <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closepos" bindtap='closemask'></image>
+        <text style="color:#1A1A1A;font-size:34rpx;">签到成功</text>
+        <text style="color:#FF7D2F;font-size:28rpx;margin-bottom:34rpx;">恭喜获得{{signinreward}}战力和1份礼包</text>
+        <navigator target="miniProgram" path="{{randommini.url}}" app-id="{{randommini.appid}}" class="signgiftimg" style="background-image: url({{randommini.miniimg}});"></navigator>
+        <navigator target="miniProgram" path="{{randommini.url}}" app-id="{{randommini.appid}}" class="signgiftbutton">立即领取</navigator>
+      </view>
+    </block>
+    <block wx:if="{{layertype == 8}}">
+      <image src="https://qmzgcdn.boc7.net/test/closemore.png" class="closepos" bindtap='closemask' style="width:56rpx;height:56rpx;top:840rpx;left:0;margin:auto;padding:30rpx 100rpx 100rpx;"></image>
+      <navigator class='envelopelayer1' url="{{hastoken==1?'../moneybag/moneybag':'../login/login'}}" open-type="navigate"></navigator>
+    </block>
+  </view>
+  <view class='mask' hidden='{{exchangelayer}}'>
+    <block wx:if="{{insufficientbattle == 1}}">
+      <view class='bags' style="width: 650rpx;height: 520rpx;padding:64rpx 0;">
+        <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closeexchange" bindtap='closeexchange'></image>
+        <image src="https://qmzgcdn.boc7.net/test/nowon.jpg" style="width:128rpx;height:128rpx;border-radius:50%;"></image>
+        <text>战力不足，快去邀请好友得战力吧!
+        邀请一个好友+2000战力
+        </text>
+        <button open-type='share' data-freeindex="{{freeexchange}}" id="insufficient_share" class="invitefriends">邀请好友</button>
+      </view>
+    </block>
+    <block wx:if="{{insufficientbattle == 0}}">
+      <form bindsubmit='submitinfo' report-submit="true">
+        <view class='bags' style="width: 650rpx;height:720rpx;padding:48rpx 0;">
+          <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closeexchange" bindtap='closeexchange'></image>
+          <text style="font-size:34rpx;">兑换</text>
+          <view style="font-size:26rpx;color:#333333;font-family:Microsoft YaHei;margin-bottom:34rpx;margin-top:10rpx;">
+            <text>使用</text><text style="color:#FE4141;">{{exchange.battlevalue}}</text><text>战力兑换【{{exchange.goodsname}}】</text>
+          </view>
+          <view class="size26_color666">
+            <text>请填写兑奖信息</text>
+            <view class="flex_input"><text>微信号：</text><input name="input1"/></view>
+            <view class="flex_input"><text>微信昵称：</text><input name="input2"/></view>
+            <view class="flex_input"><text>充值账号：</text><input name="input3" placeholder="请填QQ账号/腾讯/优酷/爱奇艺视频账号" placeholder-style="color:#B3B3B3;font-size:24rpx;margin-left:6rpx;"/></view>
+          </view>
+          <button formType="submit" style="margin-top:16px;margin-bottom:28rpx;" id="confirm_mallexchange">确定兑换</button>
+          <text style="text-align:left;">温馨提示：游戏类兑换商品请填写需要充值的QQ账号；视频类商品请填写相应的视频会员账号。</text>
+        </view>
+      </form>
+    </block>
+  </view>
+  <view class='mask' hidden='{{contactlayer}}'>
+    <block wx:if="{{giftorbattle == 2}}">
+      <view class='bags' style="width:600rpx;height: 340rpx;padding:30rpx 0 20rpx;">
+        <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closeexchange" bindtap='closecontact'></image>
+        <text>温馨提示：您确定要兑换该商品吗？
+        兑换成功后现金将直接转账到微信零钱
+        </text>
+        <view style="display:flex;">
+          <button class="confirm_exchangemoney" style="width:200rpx;" bindtap="confirm_money" data-index="{{freeexchange}}" id="confirm_money">确定</button>
+          <button class="confirm_exchangemoney" style="width:200rpx;margin-left:60rpx;background:#999999;" bindtap='closecontact'>取消</button>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{giftorbattle == 3}}">
+      <view class='bags' style="width:600rpx;height: 340rpx;padding:30rpx 0 20rpx;">
+        <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closeexchange" bindtap='closecontact'></image>
+        <text class="size28_color333" style="font-weight:600;">提现提示</text>
+        <text class="size26_color333" style="width:334rpx;text-align:left;">1.首次提现需要关注公众号；
+        2.微信提现需实名认证。</text>
+        <button open-type="contact" class="contact_confirm" session-from='mall_gzh'>点击回复：1</button>
+      </view>
+    </block>
+  </view>
+  <view style="width:0px;height:0px;overflow:hidden;">
+      <canvas canvas-id="shareCanvas"></canvas>
+  </view>
+</view>
+<view style="top:0;background:#333333;width:100%;height:100%;position:fixed;z-index:1;" hidden="{{loadingHidden}}">
+  <loading>
+      加载中...
+  </loading>
+</view>

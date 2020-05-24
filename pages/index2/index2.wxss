@@ -1,0 +1,521 @@
+/**index.wxss**/
+
+page {
+  width: 100%;
+  height: auto;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  background: #F5F5F5;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  position:relative;
+}
+
+.raiders{
+  width:100%;margin:0 auto;height:260rpx;
+}
+
+.raiders navigator,.raiders view{
+  width:100%;height:100%;
+  background-size:100% 100%;
+}
+
+.raiders button{
+  width:100%;height:100%;
+  background: transparent;
+  background-size:100% 100%;border:0;
+}
+
+.raiders button::after{
+  border:0;
+}
+
+.signanimation{
+  animation: mymove1 1.5s linear infinite;
+  -o-animation: mymove1 1.5s linear infinite;
+  -moz-animation: mymove1 1.5s linear infinite;
+  -webkit-animation: mymove1 1.5s linear infinite;
+}
+
+@keyframes mymove1 {
+  0% {transform:translate(0,4px);}
+  50% {transform:translate(0,-4px);}
+  100% {transform:translate(0,4px);}
+}
+@-webkit-keyframes mymove1 {
+  0% {transform:translate(0,4px);}
+  50% {transform:translate(0,-4px);}
+  100% {transform:translate(0,4px);}
+}
+
+.invitefriend{
+  width:380rpx;height:76rpx;
+  position:relative;
+  background-image:url('https://qmzgcdn.boc7.net/test/inviteprom2.png');
+  background-size:424rpx 116rpx;background-position: -20rpx -20rpx;
+  margin:0 auto;margin-top:34rpx;
+  border-radius:38rpx;
+  display:flex;justify-content:center;align-items:center;
+  padding:0;border:0;box-shadow:0rpx 0rpx 14rpx #FE7641;
+}
+
+.invitefriend:after{
+  border:0;
+}
+
+.invitefriend>image{
+width:28rpx;height:28rpx;
+}
+
+.invitefriend>text{
+font-family:MicrosoftYaHei;font-size:28rpx;color:#ffffff;margin-left:8rpx;
+}
+
+.indextable{
+  width: 100%;
+  height:190rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+}
+
+.indextable>navigator,.indextable>button{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.indextable>button{
+  border:0;
+  padding: 0;
+  margin: 0;background: transparent;
+}
+.indextable>button::after{
+  border:0;
+}
+
+.indextable>navigator>image,.indextable>button>image{
+  width: 86rpx;
+  height: 86rpx;
+  border-radius: 20rpx;
+  margin-left:30rpx;
+  margin-right:30rpx;
+}
+
+.indextable>navigator>text,.indextable>button>text{
+  font-family: MicrosoftYaHei;
+  font-size:24rpx;
+  color:#4D4D4D;
+  margin-top: 18rpx;
+  line-height:32rpx;
+}
+
+.rotor {
+  width: 100%;
+  height: 70rpx;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.rotor>image{
+  width:32rpx;
+  height:28rpx;
+  margin: 22rpx 26rpx 22rpx 30rpx;
+}
+
+.notifytext{
+  font-size: 24rpx;
+  font-family: MicrosoftYaHei;
+  color: #666666;
+  width:90%;
+  height:70rpx;
+  line-height: 70rpx;
+}
+
+.everydaylottery{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  margin-top: 16rpx;
+}
+
+.everydaylottery>text{
+  font-size: 30rpx;
+  font-family: MicrosoftYaHei;
+  color: #333333;
+}
+
+.everydaylottery>navigator>text{
+  font-size: 26rpx;
+  font-family: MicrosoftYaHei;
+  color: #666666;
+}
+
+.everydaylottery>navigator>image{
+  width:24rpx;
+  height: 24rpx;
+  margin-left: 10rpx;
+}
+
+.prizethumb{
+  background-size:100% 100%;
+  height:330rpx;
+  position:relative;
+  border-top-left-radius:20rpx;
+  border-top-right-radius:20rpx;
+}
+
+.prizethumb>view{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  width:100%;height:70rpx;
+  position:absolute;bottom:0;
+  font-family:SourceHanSansCN-Regular;
+  color:#ffffff;
+  box-sizing:border-box;
+  padding:0 20rpx;
+}
+
+.prizethumb>navigator,.prizethumb>text{
+  position:absolute;top:0;right:0;
+  font-family:SourceHanSansCN-Regular;
+  color:#ffffff;
+  font-size:24rpx;
+  background-image: url('https://qmzgcdn.boc7.net/test/activeSponsor1.png');
+  background-size: 100% 100%;
+  box-sizing:border-box;
+  padding:16rpx;
+  border-top-right-radius:22rpx;
+  border-bottom-left-radius:22rpx;
+}
+
+.prizethumb>view>view:nth-child(1){
+  display:flex;
+  justify-content:flex-start;
+  align-items:center;
+  z-index:1;
+}
+
+.prizethumb>view>view:nth-child(3){
+  background:#000000;
+  opacity:0.5;
+  width: 100%;
+  height:100%;
+  position: absolute;
+  bottom:0;z-index:0;left:0;
+}
+
+.prizethumb>view>view>text,.prizethumb>view>text{
+  font-size:24rpx;
+  z-index:1;
+}
+
+.lotterygoodsdetail{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 20rpx;
+  height:130rpx;
+}
+
+.lotterygoodsdetail>view{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+  font-family:Source Han Sans CN;
+}
+
+.lotterygoodsdetail>button{
+  width:160rpx;
+  height:56rpx;
+  line-height:56rpx;
+  border-radius:28rpx;
+  font-family:MicrosoftYaHei;
+  font-size:26rpx;
+  margin:0;
+  border:0;
+}
+
+.lotterygoodsdetail>button::after{
+  border:0;
+}
+
+.lotterycountdown{
+  font-size:26rpx;
+  margin:0 10rpx;
+}
+
+.lotterycountdown>text{
+  padding:4rpx 6rpx;
+  background-image:url('https://qmzgcdn.boc7.net/test/countdown_back1.png');
+  background-size:100% 100%;
+  margin: 0 6rpx;
+}
+
+/* .battleexchange{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 30rpx;
+}
+
+.battleexchange>view{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.battleexchange>view>image{
+  width:36rpx;
+  height:36rpx;
+  margin-right: 6rpx;
+}
+
+.battleexchange>view>text{
+  font-family: MicrosoftYaHei;
+  font-size:24rpx;
+  color:#666666;
+}
+
+.battleexchange>text{
+  font-family: MicrosoftYaHei;
+  font-size:28rpx;
+  color:#333333;
+} */
+
+.mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+}
+
+.bags {
+  width:600rpx;
+  height: 300rpx;
+  padding:70rpx 0 20rpx;
+  z-index: 1000;
+  background:#ffffff;
+  border-radius: 16rpx;
+  position: fixed;
+  top:0;
+  bottom:0;
+  left: 0;right:0;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing:border-box;
+}
+.bags>text{
+  color:#333333;
+  font-size:26rpx;
+  width:564rpx;
+  text-align:center;
+}
+.bags>button{
+  color:#ffffff;
+  font-size:26rpx;
+  width: 300rpx;
+  height:68rpx;
+  border-radius: 34rpx;
+  background: #FE4141;
+}
+
+.tomakebattle{
+  width: 300rpx;
+  height: 68rpx;
+  line-height: 68rpx;
+  border-radius: 34rpx;
+  background: #FE4141;
+  font-size: 26rpx;
+  color:#ffffff;
+  font-family: MicrosoftYaHei;
+  text-align: center;
+  margin-top: 36rpx;
+}
+
+.closeexchange{
+  position:absolute;
+  width:40rpx;height:40rpx;
+  top:34rpx;right:34rpx;
+}
+
+.size26_color666{
+  font-size:26rpx;
+  color:#666666;
+}
+
+.cover {
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 9999;
+}
+
+.envelopelayer1,.envelopelayer2,.envelopelayer3 {
+  width: 580rpx;
+  z-index: 10000;
+  margin: 140rpx auto;
+  background-size:100% 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.envelopelayer1{
+  height: 690rpx;
+  background-image:url('https://qmzgcdn.boc7.net/test/getenvelope4.png');
+  background-size:100% 100%;
+  /* padding-top:230rpx; */
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* .envelopelayer1>button{
+  width:300rpx;
+  height:70rpx;
+  background-image: url('https://qmzgcdn.boc7.net/test/drawimmediate.png');
+  background-size:314rpx 78rpx;
+  border-radius:36rpx;
+  border:0;
+  position: absolute;left:0;right:0;margin: auto;
+  bottom: 36rpx;background-position:-6rpx -6rpx;
+} */
+
+.envelopelayer1>button::after{
+  border:0;
+}
+
+/* .envelopelayer1>image,.layersize2>image{
+  width:274rpx;
+  height: 226rpx;
+  margin:-48rpx 0 -40rpx 0;
+} */
+
+.envelopelayer2{
+  height: 720rpx;
+  background-image:url('https://qmzgcdn.boc7.net/test/openenvelope1.png');
+  /* box-sizing:border-box;
+  padding:128rpx 0 100rpx 0; */
+}
+
+/* .envelopelayer1>text{
+  font-family:MicrosoftYaHei;color:#FFF0B6;text-align: center;
+} */
+
+.envelopelayer3{
+  height: 810rpx;
+  background-image:url('https://qmzgcdn.boc7.net/test/moreenvelope.png');
+  padding:34rpx 0 28rpx 0;
+  box-sizing: border-box;
+}
+
+.layersize2{
+  font-family:MicrosoftYaHei;color:#FE4141;font-size:42rpx;
+  height:268rpx;width:100%;
+  display:flex;flex-direction:column;justify-content:space-around;align-items:center;
+  box-sizing:border-box;
+  padding:24rpx 0;
+}
+
+.againopen{
+  width: 320rpx;
+  height:76rpx;
+  background: #FFD668;
+  border:0;
+  border-radius:38rpx;
+  font-family: MicrosoftYaHei;
+  font-size:28rpx;
+  color:#FE4141;
+  line-height: 76rpx;
+}
+
+.againopen::after{
+  border:0;
+}
+
+.closepos{
+  position:absolute;
+  width:56rpx;height:56rpx;
+  top:840rpx;
+  right:0;
+  left:0;
+  margin:auto;
+  padding:30rpx 100rpx 100rpx;
+}
+
+.flop{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.flop>image,.flop>view{
+  width:194rpx;height:250rpx;margin: 20rpx 16rpx;
+}
+
+.flop>view{
+  background-image:url('https://qmzgcdn.boc7.net/test/turnedon2.png');
+  background-size:100% 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;box-sizing: border-box;
+  padding-top:44rpx;
+}
+
+.invitefriends{
+  width:400rpx;height:70rpx;
+  border:0;border-radius: 36rpx;background: #FE4141;
+  font-family: MicrosoftYaHei;font-size:26rpx;color:#ffffff;
+}
+.invitefriends::after{
+  border:0;
+}
+
+.jumpmakebattle{
+  position:fixed;
+  top:78%;right:22rpx;
+  width:96rpx;height:116rpx;
+  background-image:url('https://qmzgcdn.boc7.net/test/float_makebattle.png');
+  background-size:100% 100%;
+}
+
+.sharetogether{
+  border:0;
+  font-family: SourceHanSansCN-Regular;
+  font-size: 28rpx;
+  color:#ffffff;
+  padding: 0;
+}
+
+.sharetogether::after{
+  border:0;
+}

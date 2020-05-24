@@ -1,0 +1,12 @@
+<!--pages/incomerecord/incomerecord.wxml-->
+<view class="container">
+    <view class="myrecord">
+      <view wx:for="{{incomerecord}}">
+        <view>
+          <text>{{item.type}}</text>
+          <text>{{item.ctime}}</text>
+        </view>
+        <text style="color:{{item.color>0?'#FE4141':'#666666'}}">{{item.money}}</text>
+      </view>
+    </view>
+</view>

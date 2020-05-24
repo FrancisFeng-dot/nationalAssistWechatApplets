@@ -1,0 +1,305 @@
+<!--pages/friendassist/friendassist.wxml-->
+<view class="container" style="background:#3F898A;">
+  <view class="redeemtop">
+    <image src="https://qmzgcdn.boc7.net/test/pirate_dingbu2.jpg" class="redeebackground"></image>
+    <view class="activitytime">
+      <text>活动时间：{{activitystar}}至{{activityend}}（每天可参加1次）</text>
+    </view>
+    <swiper display-multiple-items="2" vertical="true" autoplay="false" interval="3000" duration="3000" circular="true" class="redemptrecord" style="width:400rpx;height:136rpx;"> 
+      <block wx:for="{{redemption}}">  
+        <swiper-item>  
+          <view>
+            <view></view>
+            <image src="{{item.headimgurl}}"></image>
+            <text>{{item.wx_nickname}}成功兑换{{item.goods_name}}</text>
+          </view>
+        </swiper-item>  
+      </block>  
+    </swiper>  
+    <navigator url="../index/index" id="gobackindex" open-type="reLaunch" class="suspensionpiece" style="border-right-bottom-radius:32rpx;border-right-top-radius:32rpx;left:0;background-image:url('https://qmzgcdn.boc7.net/test/left_Suspension.png');">返回首页
+    </navigator>
+    <navigator id="weneedlottery" class="suspensionpiece" style="border-left-top-radius:32rpx;border-left-bottom-radius:32rpx;right:0;background-image:url('https://qmzgcdn.boc7.net/test/right_Suspension.png');" target="miniProgram" path="pages/base/redirect/index?routeKey=PROMOTION_GIFT_PACKAGE&p=PA01&s=act_travel_share&wtagid=104.72.43" app-id="wx06a561655ab8f5b2">我要抽奖
+    </navigator>
+    <view class="assisttime" style="background:#1C6D6E;">
+      本次助攻剩余时间：{{remaintime.hours}}时{{remaintime.minutes}}分{{remaintime.seconds}}秒
+    </view>
+  </view>
+  <view class="playgame_list" style="background-image:url('https://qmzgcdn.boc7.net/test/pirate_gamechange2.png');">
+    <view class="play_rank">
+      <image src="https://qmzgcdn.boc7.net/test/playleft_line.png"></image>
+      <text>试玩可增加助攻机会</text>
+      <image src="https://qmzgcdn.boc7.net/test/playright_line.png"></image>
+    </view>
+    <view style="display:flex;justify-content:center;align-items:center;overflow-x:scroll;position:relative;height:174rpx;width:700rpx;padding-left:2rpx;box-sizing:border-box;">
+      <view wx:for="{{gamelist}}" wx:for-index="key" class="playhassurprise">
+        <block wx:if="{{item.type==0}}">
+          <navigator bindtap='clickgame' data-index="{{key}}" target="miniProgram" path="{{item.game_url}}" app-id="{{item.game_appid}}">
+            <view style="background-image:url('{{item.big_img}}')">
+              <block wx:if="{{item.has_play==1}}">
+                <view></view>
+                <view>已领取</view>
+              </block>
+            </view>
+            <text>{{item.game_name}}</text>
+          </navigator>
+        </block> 
+        <block wx:if="{{item.type==1}}">
+          <view bindtap='clickgame' data-index="{{key}}">
+            <view style="background-image:url('{{item.big_img}}')">
+              <block wx:if="{{item.has_play==1}}">
+                <view></view>
+                <view>已领取</view>
+              </block>
+            </view>
+            <text>{{item.game_name}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class="Assisted" style="background:#1C6D6E;">
+    <text>助攻</text>
+    <image src='{{Assisted.headimg}}'></image>
+    <text>{{Assisted.name}}</text>
+  </view>
+  <view class="prop" style="background-image:url('https://qmzgcdn.boc7.net/test/pirate_daoju2.png');">
+    <view class="exchangelimit">
+      <text>每日限量10000个兑换名额</text>
+      <!-- <text>（今日已兑换{{redeemed}}/10000）</text> -->
+    </view>
+    <view class="assistnumtip">
+      <block wx:if="{{activename=='穿越火线'}}">
+        <view style="margin-right:310rpx;">
+          <text>需12-20人助攻</text>
+        </view>
+      </block>
+    </view>
+    <view class="treasure">
+      <image src="https://qmzgcdn.boc7.net/test/treasure1.png" bindtap='boxtip' class="treasureanimation"></image>
+      <image src="https://qmzgcdn.boc7.net/test/pirate_gift4.png"></image>
+      <image src="https://qmzgcdn.boc7.net/test/pirate_gift5.png"></image>
+      <image src="https://qmzgcdn.boc7.net/test/pirate_gift6.png"></image>
+      <view class="boxreminder" hidden='{{boxshow}}'>
+        <view>再有<text>{{assistmannum}}人</text>助攻可开宝箱(宝箱有一定几率爆大量道具、能量) </view>
+      </view>
+    </view>
+    <view class="Converprogress">
+<!-- 0元 -->
+      <view>
+        <view>
+          <image src="https://qmzgcdn.boc7.net/test/arrow.png"></image>
+        </view>
+        <text>0元</text>
+      </view>
+      <view style="background:#1C6D6E;">
+        <view style="width:{{viewBg1}}"></view>
+      </view>
+<!-- 0元 -->
+<!-- 6元 -->
+      <view>
+        <view>
+          <image src="https://qmzgcdn.boc7.net/test/arrow.png"></image>
+        </view>
+          <text style="{{reachmoney1}}">8元</text>
+      </view>
+      <view style="background:#1C6D6E;">
+        <view style="width:{{viewBg2}}"></view>
+      </view>
+<!-- 6元 -->
+<!-- 28.8元 -->
+      <view>
+        <view>
+          <image src="https://qmzgcdn.boc7.net/test/arrow.png"></image>
+        </view>
+          <text style="{{reachmoney2}}">28元</text>
+      </view>
+      <view style="background:#1C6D6E;">
+        <view style="width:{{viewBg3}}"></view>
+      </view>
+<!-- 28.8元 -->
+<!-- 168.8元 -->
+      <view>
+        <view>
+          <image src="https://qmzgcdn.boc7.net/test/arrow.png"></image>
+        </view>
+          <text style="{{reachmoney3}}">50元</text>
+      </view>
+<!-- 168.8元 -->
+    </view>
+    <view class="friendassist">
+      <block wx:if="{{hashelps == 0}}">
+        <button bindtap='AssistingFriends' class="animationData" id="assistforfriend">
+          <image src="https://qmzgcdn.boc7.net/test/btn_win_energy.png"></image>
+          <text>为好友助攻</text>
+        </button>
+      </block>
+      <block wx:if="{{hashelps == 1}}">
+        <button class="animationData">
+          <image src="https://qmzgcdn.boc7.net/test/btn_help_active_noclick.png"></image>
+          <text class="assistcoin">助攻了{{friendassistcoin}}元</text>
+        </button>
+        <button bindtap="assistgift" class="animationData initiateassist">
+          <image src="https://qmzgcdn.boc7.net/test/btn_win_energy.png"></image>
+          <text>我也要赢能量</text>
+        </button>
+      </block>
+    </view>
+    <view style="display:flex;justify-content:center;align-items:center;margin:30rpx auto;">
+      <block wx:if="{{hastoken==0}}">
+        <!-- <navigator url="../login/login?id={{activityid}}&&active_name={{activename}}&&zg_id={{zhugongid}}" open-type="navigate" style="opacity:1;">
+          <text class="redemptyhistory">兑换记录</text>
+        </navigator> -->
+        <view bindtap='AssistingFriends' style="opacity:1;">
+          <text class="redemptyhistory">兑换记录</text>
+        </view>
+      </block>
+      <block wx:if="{{hastoken==1}}">
+        <navigator url="../redemption/redemption" open-type="navigate" style="opacity:1;">
+          <text class="redemptyhistory">兑换记录</text>
+        </navigator>
+      </block>
+      <text class="activityrules" bindtap="rule">活动规则</text>
+    </view>
+  </view>
+  <view style="width:700rpx;margin:20rpx auto;border-radius:12rpx;overflow:hidden;">
+    <ad unit-id="adunit-9251b83f4b8b7d8a"></ad>
+  </view>
+  <view class="assistlist">
+    <image src="../../img/pirate_assist1.png"></image>
+    <view class="rankbackground">
+      <image src="../../img/linecopy.png"></image>
+      <text>好友助攻榜</text>
+      <image src="../../img/line.png"></image>
+    </view>
+    <button class="joinassistgroup" bindtap="replyone">加入助攻群</button>
+    <scroll-view scroll-y style="position: relative;width: 700rpx;height:316rpx;">
+      <block wx:if="{{assistrank.length > 0}}">
+        <view wx:for="{{assistrank}}" class="ranklist">
+          <image src="{{item.headimg}}"></image>
+          <text>{{item.nickname}}助攻了{{item.money}}元</text>
+          <text>{{item.ctime}}</text>
+        </view>
+      </block>
+      <block wx:if="{{assistrank.length == 0}}">
+          <image src="https://qmzgcdn.boc7.net/test/cry_express.png" class="unranklistimg"></image>
+          <text class="unranklisttxt">呜呜，还没有好友助攻过您呢</text>
+      </block>
+    </scroll-view>
+  </view>
+  <view class="lotterychance">
+    <view class="morelottery">
+      <view></view>
+      <text>更多抽奖机会</text>
+      <view></view>
+    </view>
+    <view class="lotterysystem" bindtap="randomlottery">
+      <view style="background-image:url({{circlegoods[0].big_img}});"></view>
+      <view style="background-image:url({{circlegoods[1].big_img}});"></view>
+      <view style="background-image:url({{circlegoods[2].big_img}});"></view>
+      <view style="background-image:url({{circlegoods[3].big_img}});"></view>
+      <view style="background-image:url('https://qmzgcdn.boc7.net/test/turntable_immediate2.png');position:relative;background-size:274rpx 248rpx;background-position:-48rpx -48rpx;"></view>
+      <view style="background-image:url({{circlegoods[4].big_img}});"></view>
+      <view style="background-image:url({{circlegoods[5].big_img}});"></view>
+      <view style="background-image:url({{circlegoods[6].big_img}});"></view>
+      <view style="background-image:url({{circlegoods[7].big_img}});"></view>
+    </view>
+  </view>
+  <!-- 弹框提示 -->
+  <view class='mask' hidden='{{masklayer}}'>
+  <!--用catchtap可以阻止事件冒泡-->
+    <block wx:if="{{eventtype == 1}}">
+    <view class='bags'>
+      <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closepos" bindtap='closemask'></image>
+<!-- 好友助攻成功 -->
+    <text class="size30_color333" style="margin-top:40rpx;">助攻成功</text>
+    <text class="size28_color666">您已为{{Assisted.name}}助攻{{friendassistcoin}}元</text>
+<!-- 好友助攻成功 -->
+      <button class="Sharebutton initiateassist" bindtap='assistgift'>
+        <image src="../../img/btn_sendHelp.png"></image>
+        <text>发起助攻 开箱赢能量</text>
+      </button>
+    </view>
+    </block>
+    <block wx:if="{{eventtype == 4}}">
+    <view class='bags'>
+      <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closepos" bindtap='closemask'></image>
+<!-- 好友助攻成功 -->
+    <text class="size28_color666" style="width:480rpx;text-align:center;margin-top:100rpx;">温馨提示：您本周3次的助攻次数已用尽，试玩活动下方游戏可增加助攻机会</text>
+<!-- 好友助攻成功 -->
+      <button class="Sharebutton" bindtap='closemask' id="opportunityexhausted">
+        <image src="../../img/btn_sendHelp.png"></image>
+        <text>知道了</text>
+      </button>
+    </view>
+    </block>
+    <block wx:if="{{eventtype == 5}}">
+    <view class='bags'>
+<!-- 好友助攻成功 -->
+    <text class="size28_color666" style="width:464rpx;text-align:center;margin-top:100rpx;">温馨提示：本次助攻不存在或已结束，请进入首页重新发起</text>
+<!-- 好友助攻成功 -->
+      <button class="Sharebutton" bindtap='jumpindex'>
+        <image src="../../img/btn_sendHelp.png"></image>
+        <text>回首页</text>
+      </button>
+    </view>
+    </block>
+    <block wx:if="{{eventtype == 7}}">
+    <view class='bags'>
+    <text class="size28_color666" style="width:464rpx;text-align:center;margin-top:100rpx;">温馨提示：本次活动已结束，请返回首页查看其它活动</text>
+      <button class="Sharebutton" bindtap='jumpindex'>
+        <image src="../../img/btn_sendHelp.png"></image>
+        <text>回首页</text>
+      </button>
+    </view>
+    </block>
+    <block wx:if="{{eventtype == 6}}">
+    <view class="bags" style="height: 480rpx;padding:64rpx 0;">
+      <text class="size30_color333">温馨提示</text>
+      <text class="size28_color333" style="text-align:center;">需要开启微信用户授权</text>
+      <view style="display:flex;">
+          <button class="subscription" style="background:#B3B3B3;" bindtap='closemask'>
+            <text>再想想</text>
+          </button>
+          <button class="subscription" open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo" wx:if="{{canIUse}}" style="margin-left:30rpx;" id="authorization">
+            <text>确定</text>
+          </button>
+      </view>
+    </view>
+    </block>
+  <!-- 活动规则 -->
+    <block wx:if="{{eventtype == 3}}">
+    <view class="bags" style="width:620rpx;height: 600rpx;padding:30rpx 0;">
+      <text class="size30_color333">活动规则</text>
+      <text class="size26_color666" style="overflow-y:scroll;margin-top:30rpx;padding:0 36rpx;">1.邀请好友帮忙助攻，达到相应的金额可获得对应游戏道具1款，兑换后其余助攻金额清零；
+2.对于同一助攻，您只能帮助助攻一次；
+3.每次助攻金额随机，参与好友越多越容易成功；
+4.每周都有3次助攻机会，每周一凌晨刷新，试玩活动下方游戏可增加助攻机会； 
+5.每邀请一定人数帮忙助攻，可以开启宝箱，每次助攻最多可开启3次；
+6.每个账号限5次领取礼品名额；
+7.助攻完成以后5天内收到助攻奖品；
+8.如发现用户存在违规行为（包含但不限于恶意刷助攻等作弊行为），全民助攻有权取消其所得奖励；
+9.全民助攻有权对活动时间和活动规则作出调整，请注意活动页面相关说明；
+10.全民助攻可在法律允许的范围内对本活动规则进行解释；
+11.本活动由全民助攻平台独家赞助提供，与腾讯公司无关。
+      </text>
+      <view class="confirm" bindtap="closemask">
+        <text>确定</text>
+      </view>
+    </view>
+    </block>
+  <!-- 活动规则 -->
+    <block wx:if="{{eventtype == 8}}">
+      <view class='bags' style="width: 600rpx;height: 300rpx;padding:68rpx 0;">
+        <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closepos" bindtap='closemask'></image>
+        <text class="contact_text">在客服会话中回复“1”</text>
+        <button open-type="contact" session-from="join" class="contact_confirm">确定</button>
+      </view>
+    </block>
+  </view>
+  <navigator open-type='switchTab' url="../index/index" class="signanimation jumpmakebattle" style="background-image:url('https://qmzgcdn.boc7.net/test/float_reciveqcoin2.png');"></navigator>
+</view>
+<view style="top:0;background:#333333;width:100%;height:100%;position:fixed;z-index:1;" hidden="{{loadingHidden}}">
+  <loading>
+      加载中...
+  </loading>
+</view>

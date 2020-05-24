@@ -1,0 +1,861 @@
+/* pages/makebattle/makebattle.wxss */
+page {
+  width: 100%;
+  height: auto;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  background:#F5F5F5;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  position:relative;
+}
+
+.indexmyinfo{
+  width:690rpx;height:91rpx;
+  border-bottom:1px solid #EBEBEB;
+  margin:0 auto;
+  display:flex;justify-content:space-between;
+  align-items:center;
+}
+
+.indexmyinfo>view:nth-child(1){
+  display:flex;justify-content:flex-start;align-items:center;
+}
+
+.indexmyinfo>view:nth-child(1)>image{
+  width:60rpx;height: 60rpx;border-radius: 50%;margin-right: 20rpx;
+}
+
+.indexmyinfo>view:nth-child(1)>view{
+  display:flex;justify-content:flex-start;align-items:center;
+  font-family:SourceHanSansCN-Regular;color:#1A1A1A;font-size:24rpx;
+}
+
+.indexmyinfo>view:nth-child(1)>view>text{
+  font-family:SourceHanSansCN-Medium;color:#1A1A1A;font-size:32rpx;font-weight:600;
+  white-space:nowrap;
+  word-wrap:normal;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  max-width:380rpx;
+}
+
+.indexmyinfo>view:nth-child(2){
+  display:flex;justify-content:flex-end;align-items:center;
+}
+
+.indexmyinfo>view:nth-child(2)>image{
+  width:30rpx;height: 32rpx;margin-right: 10rpx;
+}
+
+.indexmyinfo>view:nth-child(2)>text{
+  font-family:ArialMT;color:#1A1A1A;font-size:28rpx;
+}
+
+.pickfruit{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: MicrosoftYaHei;
+}
+
+.pickfruit>view,.pickfruit>navigator{
+  width:120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background-size: 100% 100%;
+  font-size:28rpx;
+  color:#ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pickfruit>text{
+  font-size:22rpx;
+  color:#666666;
+}
+
+.signinrecord{
+  width:100%;height:680rpx;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-around;
+  align-items:center;
+  background:#ffffff;
+  margin-bottom: 20rpx;
+}
+
+.signinrecord>view:nth-child(1){
+  width: 670rpx;
+  height: 260rpx;
+  margin: 0 auto;
+  background-image: url('https://qmzgcdn.boc7.net/test/balance.png');
+  background-size:100% 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.mybattle_show{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mybattle_show>view:nth-child(1){
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: MicrosoftYaHei;
+  font-size: 24rpx;
+  color:#ffffff;
+}
+
+.mybattle_show>view:nth-child(1)>image{
+  width:32rpx;
+  height:32rpx;margin-right: 10rpx;
+}
+
+.mybattle_show>text{
+  font-family: MicrosoftYaHei;
+  font-size: 66rpx;
+  color:#ffffff;
+}
+
+.mybattle_show>view:nth-child(3){
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.mybattle_show>view:nth-child(3)>navigator{
+  width: 120rpx;
+  height:40rpx;
+  line-height:38rpx;
+  border:1px solid #ffffff;
+  border-radius:26rpx;
+  background: transparent;
+  font-family: MicrosoftYaHei;
+  font-size: 22rpx;
+  color:#ffffff;
+  text-align: center;
+  margin: 0 10rpx;
+}
+
+.tribute_battle{
+  width:160rpx;
+  height:220rpx;
+  font-family: MicrosoftYaHei;
+  font-size: 22rpx;
+  color:#ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tribute_battle>view,.tribute_battle>navigator{
+  width:160rpx;
+  height:160rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-size:100% 100%;
+  margin-bottom:-10rpx;
+}
+
+.tribute_battle>view>text:nth-child(2){
+  margin-top:6rpx;
+  margin-bottom:12rpx;
+}
+
+/* .tribute_battle>button{
+  background: transparent;
+  border:0;
+  font-family: MicrosoftYaHei;
+  font-size: 22rpx;
+  color:#ffffff;
+  width:160rpx;
+  height:30rpx;
+  line-height:30rpx;
+  padding:0;
+}
+
+.tribute_battle>button::after{
+  border:0;
+} */
+
+.signinrecord>view:nth-child(2){
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.signinrecord>view:nth-child(2)>view{
+  width:240rpx;height:1px;background: #EBEBEB;transform: scale(1,0.5);
+}
+
+.signinrecord>view:nth-child(2)>text{
+  font-family: MicrosoftYaHei;
+  font-size: 26rpx;
+  color:#666666;
+  margin: 0 16rpx;
+}
+
+.signinrecord>view:nth-child(3){
+  width: 100%;
+  height:120rpx;
+  box-sizing: border-box;
+  padding: 0 40rpx;
+}
+
+.signinrecord>view:nth-child(3)>view{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.signinrecord>view:nth-child(3)>view>text{
+  font-family: MicrosoftYaHei;
+  font-size: 24rpx;
+  color:#B3B3B3;
+  text-align:center;
+  width: 76rpx;
+}
+
+.signinrecord>view:nth-child(3)>view:nth-child(2){
+  position:relative;
+  margin-top:12rpx;
+  margin-bottom:6rpx;
+}
+
+.signinrecord>view:nth-child(3)>view:nth-child(2)>image{
+  width: 48rpx;
+  height:48rpx;
+  margin: 0 10rpx;
+  position:relative;
+  z-index:1;
+}
+
+.signinrecord>view:nth-child(3)>view:nth-child(2)>view{
+  width:648rpx;height:6rpx;
+  background:#EBEBEB;
+  position:absolute;
+  top:0;bottom:0;left:0;right:0;margin:auto;
+  z-index:0;
+}
+
+.margint20_backfff{
+  width:100%;
+  background: #ffffff;
+  margin-top:20rpx;
+}
+
+.signbutton{
+  /* width: 360rpx;
+  height:80rpx;
+  line-height:80rpx;
+  border-radius:40rpx;
+  font-family: MicrosoftYaHei;
+  font-size: 28rpx;
+  color:#ffffff;
+  margin: 0 auto;
+  padding: 0;background: #FE4141;
+  border: 0;
+  margin-bottom:16rpx; */
+  width:120rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  border-radius: 50%;
+  background: transparent;
+  background-size: 120rpx 120rpx;
+  font-size:28rpx;
+  color:#ffffff;
+  padding: 0;
+  border: 0;
+}
+
+.signbutton::after{
+  border: 0;
+}
+
+.signanimation{
+  animation: mymove3 1.5s linear infinite;
+  -o-animation: mymove3 1.5s linear infinite;
+  -moz-animation: mymove3 1.5s linear infinite;
+  -webkit-animation: mymove3 1.5s linear infinite;
+}
+
+@keyframes mymove3 {
+  0% {transform:translate(0,4px);}
+  50% {transform:translate(0,-4px);}
+  100% {transform:translate(0,4px);}
+}
+@-webkit-keyframes mymove3 {
+  0% {transform:translate(0,4px);}
+  50% {transform:translate(0,-4px);}
+  100% {transform:translate(0,4px);}
+}
+
+.china_mobile{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 690rpx;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 30rpx 0;
+}
+
+.china_mobile>image{
+  width:44rpx;
+  height:16rpx;
+}
+
+.china_mobile>text{
+  font-family: MicrosoftYaHei;
+  font-size:30rpx;
+  color:#333333;
+  margin: 0 14rpx;
+}
+
+.mobile_mall{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 690rpx;
+  margin:0 auto;
+  flex-wrap:wrap;
+}
+
+.mobile_mall>navigator{
+  width: 330rpx;
+  height: 290rpx;
+  border-radius: 10rpx;
+  background-image:url('https://qmzgcdn.boc7.net/test/mobile_mall_back.png');
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom:12rpx;
+}
+
+.mobile_mall>navigator>view{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile_mall>navigator>view:nth-child(1)>image{
+  width: 100rpx;
+  height:100rpx;
+}
+
+.mobile_mall>navigator>view:nth-child(1)>text{
+  font-size: 28rpx;
+  color:#333333; 
+}
+
+.mobile_mall>navigator>view:nth-child(2)>text{
+  font-size: 22rpx;
+  color:#FE4141; 
+}
+
+.mobile_mall>navigator>button{
+  width: 248rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 30rpx;
+  background:#FE4141;
+  font-size: 24rpx;
+  color: #ffffff;
+  border:0;
+}
+
+.mobile_mall>navigator>button::after{
+  border:0;
+}
+
+.mybattlevalue{
+  width:224rpx;
+  height:224rpx;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background-image:url('https://qmzgcdn.boc7.net/test/nowbattlevalue.png');
+  background-size:100% 100%;
+  margin: 0 76rpx;
+}
+
+.mybattlevalue>text{
+  font-family: MicrosoftYaHei;
+  font-size: 24rpx;
+  color:#ffffff;
+}
+
+.mybattlevalue>text:nth-child(2){
+  font-family: ArialMT;
+  font-size: 50rpx;
+}
+
+.mybattlevalue>navigator,.mybattlevalue>view{
+  font-family: MicrosoftYaHei;
+  font-size: 22rpx;
+  color:#ffffff;
+}
+
+.inviteapprent{
+  border:0;
+  width:320rpx;
+  height:76rpx;
+  background-image:url('https://qmzgcdn.boc7.net/test/inviteapprent1.png');
+  background-size:340rpx 96rpx;
+  background-position:-10rpx -6rpx;
+  font-family:MicrosoftYaHei;
+  color:#ffffff;
+  font-size:28rpx;
+  padding:0;
+  border-radius:38rpx;
+  margin-top: 16rpx;
+}
+
+.inviteapprent::after{
+  border:0;
+}
+
+.funcpos{
+  display:flex;justify-content:center;align-items:center;
+}
+
+.funcpos>view,.funcpos>navigator{
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  margin: 0 50rpx;
+}
+
+.funcpos>view>image,.funcpos>navigator>image{
+  width: 82rpx;
+  height: 82rpx;
+}
+
+.funcpos>view>text,.funcpos>navigator>text{
+  font-family: SourceHanSansCN-Normal;
+  font-size:24rpx;
+  color:#333333;margin-top: 4rpx;
+}
+
+.menutitle{
+  width:100%;height:80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menutitle>image{
+  width:44rpx;
+  height:16rpx;
+}
+
+.menutitle>text{
+  font-family: MicrosoftYaHei;
+  font-size:28rpx;
+  color:#333333;
+  margin: 0 14rpx;
+}
+
+.tasklist{
+  width:100%;height:140rpx;
+}
+
+.tasklist>view{
+  position: relative;display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding-left: 30rpx;
+  height: 140rpx;
+}
+
+.tasklist>view>button{
+  width:140rpx;height:54rpx;line-height: 54rpx;
+  border-radius: 28rpx;border:0;
+  font-family: MicrosoftYaHei;
+  font-size: 26rpx;
+  background: #FE4141;
+  color:#ffffff;
+  padding: 0;
+  margin: 0;
+  margin-right: 30rpx;
+}
+
+.tasklist>view>button::after{
+  border:0;
+}
+
+.tasklist>view>view:nth-child(1){
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.tasklist>view>view:nth-child(1)>text{
+  font-family: MicrosoftYaHei;
+  font-size: 24rpx;
+  color:#808080;
+}
+
+.tryplay{
+  width: 100%;
+  height: 76rpx;line-height: 76rpx;
+  display: flex;justify-content: center;
+  align-items: center;background: #ffffff;
+  font-family:MicrosoftYaHei;font-size:24rpx;color:#666666;
+}
+
+.tryplay>text{
+  color:#FE4141;
+}
+
+.gamelist{
+  background:#ffffff;
+  display:flex;
+  justify-content:center;
+  align-items: center;
+}
+
+.gamelist>view{
+  width: 696rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin:28rpx auto;
+  flex-wrap:wrap;
+}
+
+.gamelist>view>view>view,.gamelist>view>view>navigator{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin:0 22rpx 26rpx;
+}
+
+.gamelist>view>view>view>view,.gamelist>view>view>navigator>view{
+  width: 130rpx;
+  height:130rpx;
+  border-radius: 16rpx;
+  margin-bottom: 18rpx;
+  background-size:100% 100%;
+  position: relative;
+}
+
+.gamelist>view>view>view>view>view:nth-child(1),.gamelist>view>view>navigator>view>view:nth-child(1){
+  width:100%;
+  height:100%;
+  opacity: 0.3;
+  border-radius: 16rpx;
+  background: #000000;
+}
+
+.gamelist>view>view>view>view>view:nth-child(2),.gamelist>view>view>navigator>view>view:nth-child(2){
+  font-size:24rpx;
+  color:#ffffff;
+  font-family: MicrosoftYaHei;
+  position: absolute;
+  top: 0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin: auto;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.gamelist>view>view>view>text,.gamelist>view>view>navigator>text{
+  font-family:MicrosoftYaHei;color:#666666;font-size:24rpx;
+}
+
+.alayer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+}
+
+.envelopelayer1{
+  width: 580rpx;
+  height: 690rpx;
+  z-index: 10000;
+  margin: 140rpx auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image:url('https://qmzgcdn.boc7.net/test/getenvelope4.png');
+  background-size:100% 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.envelopelayer1>button::after{
+  border:0;
+}
+
+.invite_friend_battle{
+  width:580rpx;height:650rpx;
+  margin:180rpx auto;
+  background-image:url('https://qmzgcdn.boc7.net/test/layer_invitefriend.png');
+  background-size:100% 100%;
+  border-radius:22rpx;
+  z-index:1000;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+}
+
+.invite_friend_battle>button{
+  background-image:url('https://qmzgcdn.boc7.net/test/btn_invitefriend.png');
+  background-size:316rpx 80rpx;
+  width:300rpx;height:72rpx;
+  border-radius:36rpx;
+  margin-bottom:86rpx;
+  background-position:-8rpx -4rpx;
+}
+
+.invite_friend_battle>image{
+  position:absolute;
+  width:56rpx;height:56rpx;
+  bottom:-80rpx;
+}
+
+.closepos{
+  position:absolute;
+  width:30rpx;height:30rpx;
+  top:0;
+  right:0;
+  padding:40rpx 40rpx 200rpx 200rpx;
+}
+
+.charge_reminderswitch{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.charge_reminderswitch>image{
+  width: 32rpx;
+  height:32rpx;
+}
+
+.charge_reminderswitch>text{
+  color:#666666;
+  font-size:24rpx;
+  margin-left: 8rpx;
+}
+
+.thinline{
+  width:100%;
+  height:1px;
+  background: #EBEBEB;
+  transform: scale(1,0.5);
+  position:absolute;
+  bottom:0;
+}
+
+/* 战力商城 */
+.redemptionmall{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-start;
+  align-items:center;
+  width:732rpx;
+  margin:0 auto;
+}
+
+.redemptionmall>view{
+  font-family:MicrosoftYaHei;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:center;
+  width:346rpx;height:540rpx;
+  background:#ffffff;
+  margin:0 10rpx;
+  margin-bottom:20rpx;
+  box-shadow:2rpx 2rpx 10rpx #DBDEE3;
+}
+
+.redemptionmall>view>image{
+  width:306rpx;height:306rpx;
+}
+
+.redemptionmall>view>text{
+  font-size:24rpx;
+  color:#333333;
+  margin-top:26rpx;
+  width:306rpx;
+}
+
+.redemptionmall>view>view:nth-child(3){
+margin-bottom:32rpx;
+text-align:left;
+width:306rpx;
+}
+
+.redemptionmall>view>view:nth-child(4){
+width:304rpx;
+height:80rpx;
+border-top:0.5pt solid #E6E6E6;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+}
+
+.bags {
+  width: 600rpx;
+  height: 300rpx;
+  z-index: 1000;
+  background:#ffffff;
+  border-radius: 16rpx;
+  position: fixed;
+  top:0;
+  bottom:0;
+  left: 0;right:0;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing:border-box;
+  padding:24rpx 0;
+}
+
+.bags>text{
+  color:#333333;
+  font-size:26rpx;
+  width:564rpx;
+  text-align:center;
+}
+.bags>button,.confirm_exchangemoney{
+  color:#ffffff;
+  font-size:26rpx;
+  width: 300rpx;
+  height:68rpx;
+  border-radius: 34rpx;
+  background: #FE4141;
+  border:0;
+}
+.bags>button::after,.confirm_exchangemoney::after{
+  border:0;
+}
+
+.closeexchange{
+  position:absolute;
+  width:40rpx;height:40rpx;
+  top:34rpx;right:34rpx;
+}
+
+.size26_color333{
+  font-size:26rpx;
+  color:#333333;
+}
+
+.size28_color333{
+  font-size:28rpx;
+  color:#333333;
+}
+
+.size30_color333{
+  font-size:30rpx;
+  color:#333333;
+}
+
+.contact_confirm{
+  color:#ffffff;
+  font-size:26rpx;
+  width: 300rpx;
+  height:68rpx;
+  border-radius: 34rpx;
+  background: #FE4141;
+}
+
+.flex_input{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  margin-top:20rpx;
+}
+
+.flex_input>input{
+  width:436rpx;
+  height:60rpx;
+  border-radius:8rpx;
+  border:2rpx solid #E6E6E6;
+}
+
+/* 战力商城 */
+
+.subscription{
+  position:relative;
+  width:300rpx;
+  height:68rpx;
+  padding: 0;
+  line-height: 68rpx;
+  border-radius:34rpx;
+  background: #FE4141;
+  color:#FFFFFF;
+  font-size:26rpx;
+  margin:0;
+  margin-top:42rpx;
+}
+
+.signgiftimg{
+  width: 450rpx;
+  height:250rpx;
+  border-radius: 6rpx;
+  background-size: 100% 100%;
+}
+
+.signgiftbutton{
+  width:360rpx;
+  height:96rpx;
+  line-height: 96rpx;
+  background-image: url('https://qmzgcdn.boc7.net/test/btn_signinvite1.png');
+  background-size: 100% 100%;
+  font-size:28rpx;
+  color:#ffffff;
+  text-align: center;
+}

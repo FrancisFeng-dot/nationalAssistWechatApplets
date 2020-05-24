@@ -1,0 +1,57 @@
+<!--pages/prize/prize.wxml-->
+<view class='container'>
+  <view class='num'>剩余抽奖次数：{{num}}</view>
+  <view class='block'>
+    <view class='father'>
+      <view class='box' wx:for="{{urls}}" wx:key="key" data-index="{{index}}" bindtap='show_license'>
+        <image src='{{item.url}}'></image>
+      </view>
+    </view>
+  </view>
+  <button open-type='share' class="sharefriend">分享好友</button>
+    <!--遮罩层  -->
+  <view class='mask' hidden='{{maskFlag}}' catchtap='hidden_mask'>
+  <!--用catchtap可以阻止事件冒泡-->
+    <view class='bags'>
+      <block wx:if='{{type == 0}}'>
+        <view class="nowon">
+          <image src='https://qmzgcdn.boc7.net/test/not_zhongjiang.jpg'></image>
+          <text>很遗憾未中奖...</text>
+          <button catchtap='hidden_mask'>好吧</button>
+        </view>
+      </block>
+      <block wx:if='{{type == 1}}'>
+        <image src="https://qmzgcdn.boc7.net/test/prize_bg.png" style="width:100%;height:100%;position:absolute;"></image>
+        <view class="winimage">
+          <image src="https://qmzgcdn.boc7.net/test/game_sanguowushuang.png"></image>
+        </view>
+        <view class="won">
+          <text style="color:#333333;font-size:26rpx;margin-top:46rpx;">恭喜您！获得《三国无双》新手金币礼包</text>
+          <view style='display:flex;justify-content:content;align-items:center;height:74rpx;'>
+            <image src='https://qmzgcdn.boc7.net/test/gift.png' style="width:60rpx;height:74rpx;"></image>
+            <text style="color:#333333;font-size:26rpx;padding-left:12rpx;">x1</text>
+          </view>
+        <button class="receiveredem" bindtap="sanguo" data-text="ddd3333">复制兑换码并领取</button>
+        <text class="size22_color666">兑换码：ddd3333</text>
+        <text class="size22_color666" style='padding-bottom:28rpx;'>领取方式：进入游戏，点击上方按钮-礼包-输入礼包码</text>
+        </view>
+      </block> 
+      <block wx:if='{{type == 2}}'>
+        <image src="https://qmzgcdn.boc7.net/test/prize_bg.png" style="width:100%;height:100%;position:absolute;"></image>
+        <view class="winimage">
+          <image src="https://qmzgcdn.boc7.net/test/game_yxyfk.png"></image>
+        </view>
+        <view class="won">
+          <text style="color:#333333;font-size:26rpx;margin-top:46rpx;">恭喜您！获得《英雄也疯狂》新手礼包</text>
+          <view style='display:flex;justify-content:content;align-items:center;height:74rpx;'>
+            <image src='https://qmzgcdn.boc7.net/test/gift.png' style="width:60rpx;height:74rpx;"></image>
+            <text style="color:#333333;font-size:26rpx;padding-left:12rpx;">x1</text>
+          </view>
+        <button class="receiveredem" bindtap="hero" data-text="00116f1481486056721fb9">复制兑换码并领取</button>
+        <text class="size22_color666">兑换码：00116f1481486056721fb9</text>
+        <text class="size22_color666" style='padding-bottom:28rpx;'>领取方式：进入游戏，点击上方按钮-礼包-输入礼包码</text>
+        </view>
+      </block> 
+    </view>
+  </view>
+</view>

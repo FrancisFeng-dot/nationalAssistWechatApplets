@@ -1,0 +1,290 @@
+/* pages/assist/assist.wxss */
+page {
+  width: 100%;
+  height: auto;
+  overflow-y: auto;
+  /*滚动条要隐藏么  */
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background: rgba(245, 245, 245, 1);position:relative;
+  /* padding-top: 30rpx; */
+}
+
+/* .friendlist{
+  position:relative;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  margin-top:42rpx;
+}
+
+.friendlist>view{
+  width:100rpx;height:100rpx;background-image:url('https://qmzgcdn.boc7.net/test/invite1.png');background-size:100% 100%;
+}
+
+.friendlist>view>image{
+  width:100%;
+  height:100%;
+  border-radius:8rpx;
+}
+
+.friendlist>button{
+  width:100rpx;height:100rpx;
+  background-size:100rpx 100rpx;
+  background-position: 0rpx 0rpx;
+  background-image:url('https://qmzgcdn.boc7.net/test/invite2.png');
+  border-radius:10rpx;
+  padding:0;border:0;margin:0;
+}
+
+.friendlist>button:after{
+  border:0;
+} */
+
+.banner {
+  width: 100%;
+  height: 214rpx;
+}
+
+.banner>image{
+  width:100%;
+  height:100%;
+}
+
+.rotor {
+  width: 100%;
+  height: 70rpx;
+  background: white;
+  display: flex;
+  align-items: center;
+}
+
+.rotor>image{
+  width:32rpx;
+  height:28rpx;
+  margin: 22rpx 26rpx 22rpx 30rpx;
+}
+
+.notifytext{
+  font-size: 24rpx;
+  font-family: MicrosoftYaHei;
+  color: #666666;
+  width:90%;
+  height:70rpx;
+  line-height: 70rpx;
+}
+
+.pirate{
+  margin-top:20rpx;
+  background:#ffffff;
+  box-sizing:border-box;
+  padding-top:1rpx;
+  padding-bottom:30rpx;
+}
+
+.pirate>navigator{
+  position:relative;opacity:1;
+  width:700rpx;
+  height:190rpx;
+  margin: 0 auto;
+  margin-top:20rpx;
+  background-size: 100% 100%;
+}
+
+.pirate>navigator>text{
+  font-family: MicrosoftYaHei;
+  color:#ffffff;
+  font-size:22rpx;
+  position:relative;
+  float:right;margin-top:86rpx;
+  margin-right:88rpx;
+}
+
+.title {
+  width: 100%;
+  height: 82rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  font-family: MicrosoftYaHei;
+  color: rgba(50, 50, 50, 1);
+}
+
+.list {
+  width: 100%;
+  background: rgba(255, 255, 255, 1);
+  padding: 0;
+}
+
+.list_title {
+  width: 100%;
+  height: 68rpx;
+  border-bottom:1rpx solid rgba(229, 229, 229, 1);
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 26rpx;
+  font-family: MicrosoftYaHei;
+  color: rgba(102, 102, 102, 1);
+  box-sizing:border-box;
+}
+
+.list_title view {
+  width: 130rpx;
+  height: 56rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.active {
+  color: rgba(254, 65, 65, 1);
+  border-bottom: 6rpx solid rgba(254, 65, 65, 1);
+  margin-bottom:-6rpx;
+}
+
+/*助攻榜*/
+
+.skin {
+  width: 100%;margin-top:2rpx;overflow-y:scroll;overflow-x:hidden;
+}
+
+.box {
+  width: 100%;
+  height: 104rpx;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.skin_person {
+  width: 86%;
+  height: 112rpx;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 1);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-right:130rpx;padding-bottom:10rpx;
+  margin-left:40rpx;
+  position: relative;
+}
+
+.thinline{
+  width:100%;
+  height:1px;
+  background: #EBEBEB;
+  transform: scale(1,0.5);
+  position:absolute;
+  bottom:10rpx;
+}
+
+.person_title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width:380rpx;
+}
+
+.person_title>image {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  margin-right:34rpx;
+}
+
+.person_title>text {
+  font-size: 26rpx;
+  font-family: MicrosoftYaHei;
+  color: #666666;
+}
+
+.person_time {
+  font-size: 26rpx;
+  font-family: MicrosoftYaHei;
+  color: #666666;
+  white-space: nowrap;
+}
+
+.second {
+  width: 80rpx;
+  height: 100%;
+  border: 1rpx solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.second view {
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+  border: 1rpx solid blue;
+}
+
+.second view:nth-child(1) {
+  width: 100%;
+  font-size: 22rpx;
+  margin-bottom: 10rpx;
+  text-align: center;
+}
+
+.second view:nth-child(2) {
+  font-size: 22rpx;
+}
+
+.width38_height52{
+  width:38rpx;height:52rpx;
+}
+
+.size34_999{
+  text-align:center;font-size:34rpx;color:#999999;line-height:52rpx;
+}
+
+/* .Sharebutton{
+  width:130rpx;height:70rpx;
+  position:absolute;right:0;top:620rpx;
+  background-image:url('https://qmzgcdn.boc7.net/test/contract_custom.png');
+  background-size:100% 100%;
+  border-radius: 0;
+  border-top-left-radius:34rpx;
+  border-bottom-left-radius:34rpx;
+}
+
+.Sharebutton::after {
+    border-radius: 0;
+} */
+
+.mask{
+  margin: auto;
+  margin-top:160rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+}
+
+.mask>image{
+  width: 148rpx;
+  height: 148rpx;
+}
+
+.mask>text{
+  font-family: MicrosoftYaHei;
+  font-size:28rpx;
+  color:#666666;
+  margin-top: 52rpx;
+}

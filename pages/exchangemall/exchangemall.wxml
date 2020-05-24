@@ -1,0 +1,82 @@
+<!--pages/exchangemall/exchangemall.wxml-->
+<view class="container">
+  <swiper autoplay="true" interval="3000" duration="2000" circular="true" class="raiders">  
+    <block wx:for="{{activebanner}}" wx:for-index="key">  
+      <swiper-item>  
+        <navigator target="miniProgram" path="{{item.game_url}}" app-id="{{item.game_appid}}" style="background-image:url({{item.img}})"></navigator>
+      </swiper-item>  
+    </block>  
+  </swiper>  
+  <view class="redemptionmall">
+    <view wx:for="{{goodslist}}" wx:for-index="key" bindtap='redeemgoods' data-index="{{key}}">
+      <image src="{{item.big_img}}"></image>
+      <text>{{item.goods_name}}</text>
+      <view>
+        <block wx:if="{{item.battle >= 10000}}">
+        <text style="font-size:26rpx;color:#FE4141;">{{item.battle/10000}}w战力</text>
+        </block>
+        <block wx:if="{{item.battle < 10000}}">
+        <text style="font-size:26rpx;color:#FE4141;">{{item.battle}}战力</text>
+        </block>
+        <text style="font-size:20rpx;color:#999999;margin-left:10rpx;">价值：{{item.money}}元</text>
+      </view>
+      <view>
+        <image src="https://qmzgcdn.boc7.net/test/freeexchange.png" style="width:28rpx;height:20rpx;"></image>
+        <text style="font-size:24rpx;color:#FE4141;margin-left:16rpx;">免费兑换</text>
+      </view>
+    </view>
+  </view>
+  <view class='mask' hidden='{{masklayer}}'>
+    <block wx:if="{{insufficientbattle == 1}}">
+      <view class='bags'>
+        <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closepos" bindtap='closemask'></image>
+        <image src="https://qmzgcdn.boc7.net/test/nowon.jpg" style="width:128rpx;height:128rpx;border-radius:50%;"></image>
+        <text>战力不足，快去邀请好友得战力吧</text>
+        <button open-type='share' data-freeindex="{{freeexchange}}" id="insufficient_share">邀请好友</button>
+      </view>
+    </block>
+    <block wx:if="{{insufficientbattle == 0}}">
+      <form bindsubmit='submitinfo' report-submit="true">
+        <view class='bags' style="height:720rpx;padding:48rpx 0;">
+          <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closepos" bindtap='closemask'></image>
+          <text style="font-size:34rpx;">兑换</text>
+          <view style="font-size:26rpx;color:#333333;font-family:Microsoft YaHei;margin-bottom:34rpx;margin-top:10rpx;">
+            <text>使用</text><text style="color:#FE4141;">{{exchange.battlevalue}}</text><text>战力兑换【{{exchange.goodsname}}】</text>
+          </view>
+          <view class="size26_color666">
+            <text>请填写兑奖信息</text>
+            <view class="flex_input"><text>微信号：</text><input name="input1"/></view>
+            <view class="flex_input"><text>微信昵称：</text><input name="input2"/></view>
+            <view class="flex_input"><text>充值账号：</text><input name="input3" placeholder="请填QQ账号/腾讯/优酷/爱奇艺视频账号" placeholder-style="color:#B3B3B3;font-size:24rpx;margin-left:6rpx;"/></view>
+          </view>
+          <button formType="submit" style="margin-top:16px;margin-bottom:28rpx;" id="confirm_mallexchange">确定兑换</button>
+          <text style="text-align:left;">温馨提示：游戏类兑换商品请填写需要充值的QQ账号；视频类商品请填写相应的视频会员账号。</text>
+        </view>
+      </form>
+    </block>
+    <block wx:if="{{insufficientbattle == 2}}">
+      <view class='bags' style="width:600rpx;height: 340rpx;padding:30rpx 0 20rpx;">
+        <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closepos" bindtap='closemask'></image>
+        <text>温馨提示：您确定要兑换该商品吗？
+        兑换成功后现金将直接转账到微信零钱
+        </text>
+        <view style="display:flex;">
+          <button class="confirm_exchangemoney" style="width:200rpx;" bindtap="confirm_money" data-index="{{freeexchange}}" id="confirm_money">确定</button>
+          <button class="confirm_exchangemoney" style="width:200rpx;margin-left:60rpx;background:#999999;" bindtap='closemask'>取消</button>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{insufficientbattle == 3}}">
+      <view class='bags' style="width:600rpx;height: 340rpx;padding:30rpx 0 20rpx;">
+        <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closepos" bindtap='closemask'></image>
+        <text class="size28_color333" style="font-weight:600;">提现提示</text>
+        <text class="size26_color333" style="width:450rpx;text-align:center;">为了您的资金安全，本次提现需要关注 “全民助攻商城”公众号</text>
+        <button open-type="contact" class="contact_confirm" session-from='mall_gzh'>点击回复：1</button>
+      </view>
+    </block>
+  </view>
+  <view style="width:0px;height:0px;overflow:hidden;">
+      <canvas canvas-id="shareCanvas"></canvas>
+  </view>
+  <navigator open-type='switchTab' url="../index/index" class="signanimation jumpmakebattle"></navigator>
+</view>

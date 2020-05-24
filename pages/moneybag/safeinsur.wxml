@@ -1,0 +1,2 @@
+<!--pages/moneybag/safeinsur.wxml-->
+<web-view src="{{h5url}}"></web-view>

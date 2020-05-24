@@ -1,0 +1,81 @@
+{
+  "pages": [
+    "pages/index2/index2",
+    "pages/index/index",
+    "pages/index/battlerank",
+    "pages/assist/assist",
+    "pages/moneybag/moneybag",
+    "pages/moneybag/safeinsur",
+    "pages/combatrecord/combatrecord",
+    "pages/exchangemall/exchangemall",
+    "pages/extractq/extractq",
+    "pages/feedback/feedback",
+    "pages/freelottery/freelottery",
+    "pages/incomerecord/incomerecord",
+    "pages/login/login",
+    "pages/lotterydetail/lotterydetail",
+    "pages/sharepng/sharepng",
+    "pages/redemption/redemption",
+    "pages/usercenter/usercenter",
+    "pages/assistposter/assistposter",
+    "pages/myselfassist/wzassist",
+    "pages/myselfassist/cfassist",
+    "pages/myselfassist/priateassist",
+    "pages/friendassist/cffriendass",
+    "pages/friendassist/wzfriendass",
+    "pages/friendassist/priatefriendass",
+    "pages/friendassist/landlordfriendass",
+    "pages/myselfassist/landlordassist"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#ffffff",
+    "backgroundColorTop": "#ffffff",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "全民助攻",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#FE4141",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index2/index2",
+        "text": "首页",
+        "iconPath": "img/unindex.jpg",
+        "selectedIconPath": "img/index.jpg"
+      },
+      {
+        "pagePath": "pages/assist/assist",
+        "text": "助攻",
+        "iconPath": "img/unrocket.jpg",
+        "selectedIconPath": "img/select_rocket.jpg"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "赚战力",
+        "iconPath": "img/unmakebattle.jpg",
+        "selectedIconPath": "img/makebattle.jpg"
+      },
+      {
+        "pagePath": "pages/usercenter/usercenter",
+        "text": "我的",
+        "iconPath": "img/unuser.jpg",
+        "selectedIconPath": "img/user.jpg"
+      }
+    ]
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wx79ade44c39cefc7f",
+    "wx9d4c2faacdd4ddc0",
+    "wx52a44b89f434e23c",
+    "wx5ec3f4bdf677b97b",
+    "wxb7da46ae1bb390de",
+    "wx78caa30cd32c16b9",
+    "wx20194e7827347870",
+    "wxbf19d25813d0c61a",
+    "wx593c3c05193d299f"
+  ]
+}

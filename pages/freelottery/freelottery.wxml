@@ -1,0 +1,29 @@
+<!--pages/freelottery/freelottery.wxml-->
+<view class='container'>
+  <navigator class="lotterylist" wx:for="{{activechance}}" url="../lotterydetail/lotterydetail?id={{item.id}}" open-type="navigate">
+    <image src="{{item.big_img}}"></image>
+    <view>
+      <text>{{item.goods_name}}</text>
+      <view>
+        <text>{{item.open_time}}开奖
+奖品数量：1
+        </text>
+        <block wx:if="{{item.is_join==1}}">
+          <button style="background:#ffffff;color:#FE4141;">已参与</button>
+        </block>
+        <block wx:else>
+          <button>去抽奖</button>
+        </block>
+      </view>
+    </view>
+  </navigator>
+  <view style="font-size:14px;color:#333333;height:86rpx;line-height:86rpx;text-align:center;">已开奖</view>
+  <navigator class="alreadydrawn" wx:for="{{haslottery}}" url="../lotterydetail/lotterydetail?id={{item.id}}" open-type="navigate">
+    <text>{{item.goods_name}}</text>
+    <view>
+      <text>{{item.open_time}}</text>
+      <image src="https://qmzgcdn.boc7.net/test/listicon_in.png"></image>
+    </view>
+    <view class="thinline"></view>
+  </navigator>
+</view>

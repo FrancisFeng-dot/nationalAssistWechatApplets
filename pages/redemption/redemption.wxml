@@ -1,0 +1,49 @@
+<!--pages/redemption/redemption.wxml-->
+<view class='continer'>
+<block wx:for="{{datalist}}" wx:for-item="item">
+  <view class='box1'>
+    <view class='box-header'>
+      <image src='{{item.big_img}}'></image>
+      <text>{{item.goods_name}}</text>
+    </view>
+    <view class='box-body'>
+      <view class="box-body-left">
+        <block wx:if="{{item.type == 2}}">
+            <text>消耗战力</text>
+        </block>
+        <text>兑换时间</text>
+        <text>微信昵称</text>
+        <text>微信账号</text>
+        <text>QQ账号</text>
+        <text>兑换提示</text>
+      </view>
+      <view class="box-body-right">
+        <block wx:if="{{item.type == 2}}">
+            <text>{{item.battle}}</text>
+        </block>
+        <text>{{item.ctime}}</text>
+        <text>{{item.wx_nickname}}</text>
+        <text>{{item.wx_number}}</text>
+        <text>{{item.qq}}</text>
+        <text style='color:#FF4141;'>{{item.tip}}</text>
+      </view>
+    </view>
+    <block wx:if="{{item.type == 1}}">
+      <image src="https://qmzgcdn.boc7.net/test/assistexchange.png"></image>
+    </block>
+    <block wx:if="{{item.type == 2}}">
+      <image src="https://qmzgcdn.boc7.net/test/scoreexchange.png"></image>
+    </block>
+    <block wx:if="{{item.type == 4}}">
+      <image src="https://qmzgcdn.boc7.net/test/everydayexchange.png"></image>
+    </block>
+    <block wx:if="{{item.type == 5}}">
+      <image src="https://qmzgcdn.boc7.net/test/randomexchange.png"></image>
+    </block>
+  </view>
+</block>
+  <view hidden='{{hasexchange}}' class="mask">
+    <image src="https://qmzgcdn.boc7.net/test/null_record.png"></image>
+    <text>呜呜，您还没有兑换过呢</text>
+  </view>
+</view>

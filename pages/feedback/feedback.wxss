@@ -1,0 +1,39 @@
+/* pages/feedback/feedback.wxss */
+page {
+  background: #F5F5F5;
+}
+
+.container>view{
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  background: #ffffff;
+  position: relative;
+}
+
+.submitbutton{
+  width: 610rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  background: #FE4141;
+  border-radius: 46rpx;
+  font-family: MicrosoftYaHei;
+  font-size: 32rpx;
+  color:#ffffff;
+  margin-top: 50rpx;
+}
+
+.colorb3_size28{
+  color:#B3B3B3;
+  font-size:28rpx;
+}
+
+.suggestimglist{
+  display: inline-block;
+}
+
+.suggestimglist>image{
+  width:166rpx;
+  height:166rpx;
+  margin: 10rpx 10rpx;
+  float:left;
+}

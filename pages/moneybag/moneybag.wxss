@@ -1,0 +1,434 @@
+/* pages/moneybag/moneybag.wxss */
+page {
+  overflow-y: auto;
+  background: #FF8462;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position:relative;
+
+}
+
+.extractbutton{
+  width:100rpx;height:42rpx;
+  line-height:42rpx;
+  border-radius:22rpx;
+  background:#ffffff;
+  font-family:SourceHanSansCN-Regular;font-size:22rpx;color:#FF7936;
+  text-align: center;
+}
+
+.lotterychance{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('https://qmzgcdn.boc7.net/test/background_lottery2.jpg');
+  background-repeat: no-repeat;
+  background-size:100% 670rpx;
+  position: relative;
+}
+
+.redemptrecord{
+  height:56rpx;
+  background: transparent;
+  margin-bottom:26rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.redemptrecord>view:nth-child(1){
+  position: absolute;
+  opacity: 0.3;
+  width:100%;
+  height:100%;
+  border-radius: 28rpx;
+  background:#000000;
+}
+
+.redemptrecord>image{
+  width:44rpx;
+  height:44rpx;
+  border-radius: 50%;
+  margin-right: 12rpx;
+  position:relative;
+  margin-left:10rpx;
+}
+
+.redemptrecord>view:nth-child(3){
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  max-width:310rpx;
+  white-space:nowrap;
+  word-wrap:normal;
+  text-overflow:ellipsis;
+  overflow:hidden;
+}
+
+.redemptrecord>view:nth-child(3)>text{
+  font-family: MicrosoftYaHei;
+  font-size: 24rpx;
+  color:#ffffff;
+  position:relative;
+}
+
+.lottery_getmoney{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  right:30rpx;
+  top:32rpx;
+}
+
+.lottery_getmoney>image{
+  width: 28rpx;height: 32rpx;border-radius: 4rpx;
+}
+
+.lottery_getmoney>text{
+  font-family: SourceHanSansCN-Regular;
+  font-size: 26rpx;
+  color:#ffffff;
+  margin-left:12rpx;
+  margin-right: 24rpx;
+}
+
+.lottery_getmoney>button{
+  width: 110rpx;
+  height:44rpx;
+  line-height: 44rpx;
+  border:0;
+  background: #ffffff;
+  border-radius: 22rpx;
+  font-family: SourceHanSansCN-Regular;
+  font-size: 22rpx;
+  color:#EE613A;
+}
+
+.lottery_getmoney>button::after{
+  border:0;
+}
+
+.getmoneytask{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 70rpx;
+  font-family: MicrosoftYaHei;
+  font-size:26rpx;
+  color:#FFF66C;
+  margin: 34rpx 0;
+}
+
+.invite_friends{
+  width:610rpx;
+  height: 86rpx;
+  line-height: 86rpx;
+  border-radius: 44rpx;
+  background-image:url('https://qmzgcdn.boc7.net/welfare/free_game/invite_friendbutton.png');
+  background-size: 100% 100%; 
+  border:0;
+  font-family: SourceHanSansCN-Regular;
+  font-size: 32rpx;
+  color:#E5401F;
+}
+
+.invite_friends::after{
+  border:0;
+}
+
+.gamelist{
+  display:flex;
+  justify-content:center;
+  align-items: center;
+}
+
+.gamelist>view{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin:50rpx 16rpx 26rpx;
+}
+
+.gamelist>view>view>view,.gamelist>view>navigator>view{
+  width: 114rpx;
+  height:114rpx;
+  border-radius: 20rpx;
+  margin-bottom: 18rpx;
+  background-size:100% 100%;
+  position: relative;
+}
+
+.gamelist>view>view>view>view:nth-child(1),.gamelist>view>navigator>view>view:nth-child(1){
+  width:100%;
+  height:100%;
+  opacity: 0.65;
+  border-radius: 20rpx;
+  background: #000000;
+}
+
+.gamelist>view>view>view>view:nth-child(2),.gamelist>view>navigator>view>view:nth-child(2){
+  font-size:24rpx;
+  color:#ffffff;
+  font-family: SourceHanSansCN-Regular;
+  position: absolute;
+  top: 0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin: auto;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.gamelist>view>view>text,.gamelist>view>navigator>text{
+  font-family:SourceHanSansCN-Regular;
+  color:#FFFFFF;
+  font-size:22rpx;
+  text-align: center;
+  display: block;
+  width:88rpx;margin:0 auto;
+}
+
+.morelottery{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin: 40rpx 0 34rpx;
+}
+
+.morelottery>view{
+  width:120rpx;height:1px;background: #FFF66C;transform: scale(1,0.5);
+}
+
+.morelottery>text{
+  font-family: SourceHanSansCN-Regular;
+  font-size: 28rpx;
+  color:#FFF66C;
+  margin: 0 20rpx;
+}
+
+.lotterysystem{
+  width:636rpx;height:588rpx;
+  background-image:url('https://qmzgcdn.boc7.net/test/zhuanpanchou5.gif');
+  background-size:100% 100%;
+  margin:-62rpx 0 -12rpx 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  box-sizing:border-box;
+  padding:54rpx 0 80rpx;
+}
+.lotterysystem>view{
+  width: 176rpx;
+  height: 150rpx;
+  margin: 2rpx;
+  background-size:172rpx 148rpx;
+  box-sizing:border-box;
+  border-radius: 18rpx;
+  position: relative;
+  background-position:2rpx 2rpx;
+}
+.lotterysystem>view>view{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0;
+  left:0;
+  border-radius: 18rpx;
+  background-image: url('https://qmzgcdn.boc7.net/welfare/free_game/turntablemask.png');
+  background-size:100% 100%;
+}
+
+.mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+}
+
+.bags {
+  width:600rpx;height:790rpx;
+  z-index: 1000;
+  border-radius: 40rpx;
+  background-image:url('https://qmzgcdn.boc7.net/test/winnerback.png');
+  background-size: 100% 100%;
+  position: fixed;
+  top:0;
+  bottom:0;
+  left: 0;right:0;
+  margin: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	box-sizing: border-box;
+  padding-top:174rpx;
+}
+
+.closepos{
+  position: absolute;
+  width:60rpx;
+  height:60rpx;
+  top:10rpx;
+  right:-110rpx;
+  padding:100rpx 100rpx;
+  z-index:1001;
+}
+
+.getprize{
+	display:flex;
+	justify-content:center;
+	align-items:center;    
+	margin: 40rpx auto;
+}
+
+.closepos2{
+  position:absolute;
+  width:60rpx;height:60rpx;
+  bottom:-200rpx;
+  padding:20rpx 100rpx 100rpx;
+}
+
+.won{
+  width:100%;height:410rpx;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-around;
+  align-items:center;
+  position:relative;
+}
+
+.receiveredem{
+  width: 230rpx;
+  height:68rpx;
+  line-height:68rpx;
+  border-radius:34rpx;
+  font-size: 28rpx;
+  font-family: SourceHanSansCN-Regular;
+  color: #ffffff;
+  border:0;
+}
+
+.receiveredem::after{
+  border:0;
+}
+
+.size22_color666{
+  color:#666666;
+  font-size:22rpx;
+}
+
+.size26_color666{
+  font-size:26rpx;
+  color:#666666;
+}
+
+.size22_color999{
+  font-size:22rpx;
+  color:#999999;
+  line-height:36rpx;
+}
+
+.size30_color333{
+  font-size:30rpx;
+  color:#333333;
+}
+
+.size28_color333{
+  font-size:28rpx;
+  color:#333333;
+}
+
+.size26_color333{
+  font-size:26rpx;
+  color:#333333;
+}
+
+.converttitle{
+  position:absolute;left:0;right:0;top:-58rpx;margin:auto;
+  width:378rpx;height:92rpx;
+}
+.closeconvert{
+  position:absolute;left:0;right:0;bottom:-92rpx;margin:auto;
+  width:62rpx;height:62rpx;
+}
+
+.flex_input{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  margin-top:20rpx;
+}
+.flex_input>text{
+  font-size: 26rpx;
+  color:#333333;
+}
+.flex_input>input{
+  width:370rpx;
+  height:60rpx;
+  border-radius:8rpx;
+  border:2rpx solid #E6E6E6;
+}
+
+.subscription{
+  position:relative;
+  width:300rpx;
+  height:68rpx;
+  padding: 0;
+  line-height: 68rpx;
+  border-radius:34rpx;
+  background: #FE4141;
+  color:#FFFFFF;
+  font-size:26rpx;
+  margin:0;
+  margin-top:42rpx;
+}
+
+.share_button{
+  width:100%;height:320rpx;
+  position:fixed;bottom:0;left:0;
+  background:#EFEFEF;
+}
+.share_button>button,.share_button>navigator{
+  width:100%;height:100rpx;
+  padding: 0;
+  margin: 0;
+  background:#ffffff;
+  border-top:1px solid #EFEFEF;
+  border-radius: 0;
+  font-size:36rpx;
+}
+.share_button>button::after{
+  border:0;
+  border-radius: 0;
+}
+
+.confirmbutton{
+  border:0;
+  width:340rpx;
+  height:88rpx;
+  line-height: 88rpx;
+  border-radius: 44rpx;
+  background: #FFD668;
+  font-family:MicrosoftYaHei;
+  font-size:32rpx;
+  color:#FE4141;
+}
+
+.confirmbutton::after{
+  border:0;
+}

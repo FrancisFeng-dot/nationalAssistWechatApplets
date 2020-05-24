@@ -1,0 +1,259 @@
+<!--pages/moneybag/moneybag.wxml-->
+<view class="container">
+  <view class="lotterychance">
+    <swiper display-multiple-items="1" vertical="true" autoplay="false" interval="3000" duration="3000" circular="true" style="width:400rpx;height:60rpx;position:absolute;top:26rpx;left:20rpx;"> 
+      <block wx:for="{{redemption}}">  
+        <swiper-item>  
+          <view class="redemptrecord">
+            <view></view>
+            <image src="{{item.headimgurl}}"></image>
+            <view><text>{{item.nickname}}提现了</text><text style="color:#FFCA6F;">{{-item.money}}元</text></view>
+          </view>
+        </swiper-item>  
+      </block>  
+    </swiper>
+    <view class="lottery_getmoney">
+      <image src="https://qmzgcdn.boc7.net/welfare/free_game/myself_redbagicon.png"></image>
+      <text>{{mymoney}}</text>
+      <navigator class="extractbutton" url="{{hastoken==1?'../extractq/extractq':'../login/login'}}" open-type="navigate">提现</navigator>
+    </view>
+    <image src="https://qmzgcdn.boc7.net/test/lottery_consumption1.png" style="width:440rpx;height:140rpx;margin-top:360rpx;"></image>
+    <view class="lotterysystem">
+      <view style="background-image:url({{goodsdetail[0].big_img}});" animation="{{gift1}}"></view>
+      <view style="background-image:url({{goodsdetail[1].big_img}});" animation="{{gift2}}"></view>
+      <view style="background-image:url({{goodsdetail[2].big_img}});" animation="{{gift3}}"></view>
+      <view style="background-image:url({{goodsdetail[3].big_img}});" animation="{{gift8}}"></view>
+      <block wx:if="{{Frequent_clicks==0}}">
+        <view bindtap="randomlottery" style="background-image:url('https://qmzgcdn.boc7.net/test/turntable_immediate2.png');position:relative;background-size:274rpx 248rpx;background-position:-48rpx -48rpx;">
+          <image src="https://qmzgcdn.boc7.net/welfare/free_game/turntablemask.png" style="width: 100%;height: 100%;position:absolute;top:0;left:0;" hidden="{{remaindraws>0}}"></image>
+        </view>
+      </block>
+      <block wx:if="{{Frequent_clicks==1}}">
+        <view style="background-image:url('https://qmzgcdn.boc7.net/test/turntable_immediate2.png');position:relative;background-size:274rpx 248rpx;background-position:-48rpx -48rpx;">
+          <image src="https://qmzgcdn.boc7.net/welfare/free_game/turntablemask.png" style="width: 100%;height: 100%;position:absolute;top:0;left:0;" hidden="{{remaindraws>0}}"></image>
+        </view>
+      </block>
+      <view style="background-image:url({{goodsdetail[4].big_img}});" animation="{{gift4}}"></view>
+      <view style="background-image:url({{goodsdetail[5].big_img}});" animation="{{gift7}}"></view>
+      <view style="background-image:url({{goodsdetail[6].big_img}});" animation="{{gift6}}"></view>
+      <view style="background-image:url({{goodsdetail[7].big_img}});" animation="{{gift5}}"></view>
+    </view>
+  </view>
+  <view class="getmoneytask">
+    <text>我的战力：{{mybattle}}</text>
+    <navigator style="text-decoration:underline;" url='../index/index' open-type="switchTab">做任务赚战力></navigator>
+  </view>
+  <button class="invite_friends" open-type='share'>邀请好友+2000战力</button>
+  <!-- <view class="gamelist">
+    <view wx:for="{{gamelist}}" wx:for-index="key">
+      <block wx:if="{{item.type==1}}">
+        <navigator bindtap='clickgame' data-index="{{key}}" wx:if="{{key<5}}" target="miniProgram" path="{{item.game_url?item.game_url:'pages/index/index'}}" app-id="{{item.game_appid}}">
+          <view style="background-image:url('{{item.logo}}')">
+            <block wx:if="{{item.has_play==1}}">
+              <view></view>
+              <view>已领取</view>
+            </block>
+          </view>
+          <text>试玩+{{game_battle}}战力</text>
+        </navigator>
+      </block> 
+      <block wx:if="{{item.type==2}}">
+        <view bindtap='clickgame' data-index="{{key}}" wx:if="{{key<5}}">
+          <view style="background-image:url('{{item.logo}}')">
+            <block wx:if="{{item.has_play==1}}">
+              <view></view>
+              <view>已领取</view>
+            </block>
+          </view>
+          <text>试玩+{{game_battle}}战力</text>
+        </view>
+      </block>
+    </view>
+  </view> -->
+  <view style="width:700rpx;margin:20rpx auto;border-radius:12rpx;overflow:hidden;">
+    <ad unit-id="adunit-5c6b8ca15d749956"></ad>
+  </view>
+  <view class="morelottery">
+    <view></view>
+    <text>活动规则</text>
+    <view></view>
+  </view>
+  <view style="display:flex;justify-contetn:center;align-items:center;margin-bottom:20rpx;">
+    <text style="font-family: Source Han Sans CN;font-size: 24rpx;color:#ffffff;margin:0 auto;line-height:38rpx;">1、每人每天最多有30次抽奖机会，每次抽奖将消耗100战力;
+  2、本活动最终解释权归全民助攻所有。
+    </text>
+  </view>
+  <view class='mask' hidden='{{masklayer}}'>
+    <!-- <block wx:if="{{eventtype==1}}">
+      <view class='bags' style="padding:140rpx 0 78rpx;">
+        <image src="https://qmzgcdn.boc7.net/welfare/free_game/close_layer.png" class="closepos" bindtap='closemask'></image>
+        <block wx:if="{{playresult==1}}">
+          <text>试玩成功，获得{{}}战力</text>
+        </block>
+        <block wx:if="{{playresult==0}}">
+          <text>需要停留20秒，才算试玩成功哦~</text>
+        </block>
+        <block wx:if="{{playresult==2}}">
+          <text>试玩新游戏才能领取奖励哦~</text>
+        </block>
+        <view style="display:flex;justify-content:center;align-items:center;">
+          <button class="receiveredem" style="background-image:url('https://qmzgcdn.boc7.net/welfare/free_game/btn_inviteconfirm.png');color:#FF7936;" bindtap='closemask'>确定</button>
+          <navigator class="receiveredem" style="background-image:url('https://qmzgcdn.boc7.net/welfare/free_game/btn_invitefriend.png');margin-left:40rpx;text-align:center;" url='../index/index' open-type="switchTab">试玩更多游戏</navigator>
+        </view>
+      </view>
+    </block> -->
+    <block wx:if="{{eventtype==2}}">
+      <view class='bags'>
+        <image src="https://qmzgcdn.boc7.net/test/closemore.png" alt="" class="closepos" bindtap='closemask'></image>
+        <view style="display:flex;flex-direction:column;justify-content:center;align-items:center;margin-top:26rpx">
+          <text style="font-size: 32rpx;font-family: SourceHanSansCN-Regular;color: #1A1A1A;">战力不足</text>
+          <image src="https://qmzgcdn.boc7.net/welfare/free_game/gold_inadequate.png" style="width:174rpx;height:140rpx;"></image>
+        </view>
+        <view style="display:flex;justify-content:center;align-items:center;margin-top:64rpx;">
+          <text style="font-size: 28rpx;color:#ffffff;">当前拥有{{mybattle}}战力,</text>
+          <navigator style="font-size: 26rpx;color:#FFFD42;" url='../index/index' open-type="switchTab">做任务赚战力></navigator>
+        </view>
+        <button class="receiveredem" style="background-image:url('https://qmzgcdn.boc7.net/test/btn_imminvite.png');background-size:332rpx 80rpx;background-position:-6rpx -4rpx;color:#FF3333;width:320rpx;height:72rpx;line-height:72rpx;border-radius:36rpx;margin-bottom:12rpx;" open-type='share'>邀请好友,再抽一次</button>
+      </view>
+    </block>
+    <block wx:if="{{eventtype==3}}">
+      <view class='bags'>
+        <image src="https://qmzgcdn.boc7.net/test/closemore.png" alt="" class="closepos nowon" bindtap='closemask'></image>
+			  <image src="https://qmzgcdn.boc7.net/test/unwincartoon.png" alt="" style="width:190rpx;height:192rpx;margin-top:20rpx;"></image>
+        <view style="display:flex;flex-direction: column;justify-content:center;align-items:center;">
+          <text style="font-family:'MicrosoftYaHei';font-size:34rpx;color:#FFF0B6;">很遗憾未中奖~</text>
+          <view class="getprize">
+            <button class="receiveredem nowon" style="background:transparent;border:1px solid #ffffff;color:#ffffff;" bindtap='closemask'>继续抽奖</button>
+            <button class="receiveredem nowon" style="background:#FFD542;color:#F64C3F;margin-left:30rpx;" open-type='share'>邀请好友</button>
+          </view>
+          <text style="font-family:SourceHanSansCN-Regular;font-size:24rpx;color:#ffffff;">邀请好友可以再抽一次哦</text>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{eventtype==4}}">
+      <!-- <block wx:if="{{turnbale_eventtype==1}}">
+        <view class='bags' style="height:728rpx;padding:220rpx 0 100rpx;margin:180rpx auto;background:transparent;background-image:url('https://qmzgcdn.boc7.net/welfare/free_game/wonlayer1.png');background-size:100% 100%;">
+          <image src="https://qmzgcdn.boc7.net/welfare/free_game/close_layer.png" class="closepos" bindtap='closemask' style="top:176rpx;"></image>
+          <text>恭喜获得{{winproinfo}}</text>
+          <text style="font-size: 24rpx;color:#808080;">（限指定产品使用）</text>
+          <image src="https://qmzgcdn.boc7.net/welfare/free_game/prize_shopping.png" style="width:220rpx;height:200rpx;margin-bottom:40rpx;"></image>
+          <view style="display:flex;justify-content:center;align-items:center;">
+            <button class="receiveredem" style="background-image:url('https://qmzgcdn.boc7.net/welfare/free_game/btn_inviteconfirm.png');color:#FF7936;" bindtap='closemask'>继续抽奖</button>
+            <navigator class="receiveredem" style="background-image:url('https://qmzgcdn.boc7.net/welfare/free_game/btn_invitefriend.png');margin-left:40rpx;text-align:center;" target="miniProgram" path="haojk/pages/detail/index?skuId=33220482270&from_uid=416uniacid:11" app-id="wx38dd409c8d968ecd">前往领取</navigator>
+          </view>
+        </view>
+      </block> -->
+      <block wx:if="{{turnbale_eventtype==2}}">
+        <view class='bags' style="padding:218rpx 0 30rpx;">
+          <image src="https://qmzgcdn.boc7.net/test/closemore.png" alt="" class="closepos getbattle" bindtap='closemask'></image>
+          <view style="display:flex;flex-direction:column;justify-content:center;align-items:center;margin-top:26rpx">
+            <text style="font-size: 32rpx;font-family: SourceHanSansCN-Regular;color: #1A1A1A;">恭喜获得{{winproinfo}}</text>
+            <image src="https://qmzgcdn.boc7.net/welfare/free_game/prize_money.png" style="width:174rpx;height:140rpx;"></image>
+          </view>
+          <text style="font-size: 28rpx;color:#ffffff;margin-top:100rpx;">当前拥有{{mybattle}}战力</text>
+          <view class="getprize">
+            <button class="receiveredem getbattle" style="background:transparent;border:1px solid #ffffff;color:#ffffff;" bindtap='closemask'>继续抽奖</button>
+            <button class="receiveredem getbattle" style="background:#FFD542;color:#F64C3F;margin-left:30rpx;" open-type='share'>邀请好友</button>
+          </view>
+          <text style="font-family:SourceHanSansCN-Regular;font-size:24rpx;color:#ffffff;">邀请好友可以再抽一次哦</text>
+        </view>
+      </block>
+      <block wx:if="{{turnbale_eventtype==3}}">
+        <view class='bags' style="padding:200rpx 0 20rpx;">
+          <image src="https://qmzgcdn.boc7.net/test/closemore.png" alt="" class="closepos getmoney" bindtap='closemask'></image>
+          <view style="display:flex;flex-direction:column;justify-content:center;align-items:center;margin-top:26rpx">
+            <text style="font-size: 32rpx;font-family: SourceHanSansCN-Regular;color: #1A1A1A;">恭喜获得{{winproinfo}}</text>
+            <image src="https://qmzgcdn.boc7.net/test/redbag1.png" style="width:174rpx;height:140rpx;margin-top:20rpx;"></image>
+          </view>
+          <view style="display:flex;justify-content:center;align-items:center;margin-top:84rpx;">
+            <text style="font-size: 28rpx;color:#ffffff;">当前红包余额{{mymoney}}元，</text>
+            <navigator style="font-size: 26rpx;color:#FFFD42;" class="getmoney" url='../extractq/extractq' open-type="navigate">前往提现></navigator>
+          </view>
+          <view class="getprize" style="margin:30rpx auto 20rpx;">
+            <button class="receiveredem getmoney" style="background:transparent;border:1px solid #ffffff;color:#ffffff;" bindtap='closemask'>继续抽奖</button>
+            <button class="receiveredem getmoney" style="background:#FFD542;color:#F64C3F;margin-left:30rpx;" open-type='share'>邀请好友</button>
+          </view>
+          <text style="font-family:SourceHanSansCN-Regular;font-size:24rpx;color:#ffffff;">邀请好友可以再抽一次哦</text>
+        </view>
+      </block>
+      <block wx:if="{{turnbale_eventtype==4}}">
+        <view class='bags'>
+          <image src="https://qmzgcdn.boc7.net/test/closemore.png" alt="" class="closepos" id="pumpads" bindtap='closemask'></image>
+          <navigator target="miniProgram" path="{{gamedetail.game_url?gamedetail.game_url:'pages/index/index'}}" app-id="{{gamedetail.game_appid}}" style="width:460rpx;height:240rpx;background-image:url({{gamedetail.show_img?gamedetail.show_img:'https://qmzgcdn.boc7.net/test/ads_unlesschange1.png'}});background-size:100% 100%;" bindtap='clickgame'></navigator>
+          <view style="font-family:MicrosoftYaHei;font-size:32rpx;color:#FFF0B6;display:flex;flex-direction:column;justify-content:center;align-items:center;margin-top:46rpx;">
+            <text>恭喜您抽中红包</text>
+            <text style="font-size:28rpx;color:#ffffff;">试玩20秒即可开红包</text>
+          </view>
+          <navigator target="miniProgram" path="{{gamedetail.game_url?gamedetail.game_url:'pages/index/index'}}" app-id="{{gamedetail.game_appid}}" class="receiveredem" style="background-image:url('https://qmzgcdn.boc7.net/test/btn_imminvite.png');background-size:332rpx 80rpx;background-position:-6rpx -4rpx;color:#FF3333;width:320rpx;height:72rpx;line-height:72rpx;border-radius:36rpx;margin-bottom:12rpx;text-align:center;" bindtap='clickgame'>立即领取</navigator>
+        </view>
+      </block>
+      <block wx:if="{{turnbale_eventtype==5}}">
+        <view class='bags' style="padding:200rpx 0 20rpx;">
+          <image src="https://qmzgcdn.boc7.net/test/closemore.png" alt="" class="closepos getads" bindtap='closemask'></image>
+          <view style="display:flex;flex-direction:column;justify-content:center;align-items:center;margin-top:26rpx">
+            <text style="font-size: 32rpx;font-family: SourceHanSansCN-Regular;color: #1A1A1A;">{{getmoney}}元红包已存入我的收益</text>
+            <image src="https://qmzgcdn.boc7.net/test/redbag1.png" style="width:174rpx;height:140rpx;"></image>
+          </view>
+          <view style="display:flex;justify-content:center;align-items:center;margin-top:84rpx;">
+            <text style="font-size: 28rpx;color:#ffffff;">当前红包余额{{mymoney}}元，</text>
+            <navigator style="font-size: 26rpx;color:#FFFD42;" class="getads" url='../extractq/extractq' open-type="navigate">前往提现></navigator>
+          </view>
+          <view class="getprize" style="margin:30rpx auto 20rpx;">
+            <button class="receiveredem getads" style="background:transparent;border:1px solid #ffffff;color:#ffffff;" bindtap='closemask'>继续抽奖</button>
+            <button class="receiveredem getads" style="background:#FFD542;color:#F64C3F;margin-left:30rpx;" open-type='share'>邀请好友</button>
+          </view>
+          <text style="font-family:SourceHanSansCN-Regular;font-size:24rpx;color:#ffffff;">邀请好友可以再抽一次哦</text>
+        </view>
+      </block>
+      <block wx:if="{{turnbale_eventtype==6}}">
+        <view class='bags'>
+          <image src="https://qmzgcdn.boc7.net/test/closemore.png" alt="" class="closepos" id="pumpmask" bindtap='closemask'></image>
+          <image src="https://qmzgcdn.boc7.net/test/maskadslayer3.png" style="width:460rpx;height:240rpx;"></image>
+          <view style="font-family:MicrosoftYaHei;font-size:32rpx;color:#FFF0B6;display:flex;flex-direction:column;justify-content:center;align-items:center;margin-top:46rpx;">
+            <text>恭喜你抽中任务红包名额</text>
+            <text style="font-size:28rpx;color:#ffffff;">完成任务拿100元红包</text>
+          </view>
+          <button class="receiveredem" style="background-image:url('https://qmzgcdn.boc7.net/test/btn_imminvite.png');background-size:332rpx 80rpx;background-position:-6rpx -4rpx;color:#FF3333;width:320rpx;height:72rpx;line-height:72rpx;border-radius:36rpx;margin-bottom:12rpx;text-align:center;" id="getmask" open-type='contact' session-from='shengbei'>回复1开始任务</button>
+        </view>
+      </block>
+      <block wx:if="{{turnbale_eventtype==7}}">
+        <view class='bags'>
+          <image src="https://qmzgcdn.boc7.net/test/closemore.png" alt="" class="closepos" id="pumpminigram" bindtap='closemask'></image>
+          <image src="{{gamedetail.show_img?gamedetail.show_img:'https://qmzgcdn.boc7.net/test/safeinsurance1.gif'}}" style="width:460rpx;height:240rpx;"></image>
+          <view style="font-family:MicrosoftYaHei;font-size:32rpx;color:#FFF0B6;display:flex;flex-direction:column;justify-content:center;align-items:center;margin-top:46rpx;">
+            <text>恭喜您抽中了</text>
+            <text style="font-size:28rpx;color:#ffffff;">{{gamedetail.game_name}}</text>
+          </view>
+          <navigator target="miniProgram" path="{{gamedetail.game_url?gamedetail.game_url:'pages/index/index'}}" app-id="{{gamedetail.game_appid}}" id="getminigram" class="receiveredem" style="background-image:url('https://qmzgcdn.boc7.net/test/btn_imminvite.png');background-size:332rpx 80rpx;background-position:-6rpx -4rpx;color:#FF3333;width:320rpx;height:72rpx;line-height:72rpx;border-radius:36rpx;margin-bottom:12rpx;text-align:center;">立即领取</navigator>
+        </view>
+      </block>
+      <block wx:if="{{turnbale_eventtype==8}}">
+        <view class='bags'>
+          <image src="https://qmzgcdn.boc7.net/test/closemore.png" alt="" class="closepos" id="pumpinsurance" bindtap='closemask'></image>
+          <image src="{{gamedetail.show_img?gamedetail.show_img:'https://qmzgcdn.boc7.net/test/safeinsurance1.gif'}}" style="width:460rpx;height:240rpx;"></image>
+          <view style="font-family:MicrosoftYaHei;font-size:32rpx;color:#FFF0B6;display:flex;flex-direction:column;justify-content:center;align-items:center;margin-top:46rpx;">
+            <text>恭喜您抽中了</text>
+            <text style="font-size:28rpx;color:#ffffff;">{{gamedetail.game_name}}</text>
+          </view>
+          <navigator url="./safeinsur?url={{gamedetail.game_url}}" open-type='navigate' id="getinsurance" class="receiveredem" style="background-image:url('https://qmzgcdn.boc7.net/test/btn_imminvite.png');background-size:332rpx 80rpx;background-position:-6rpx -4rpx;color:#FF3333;width:320rpx;height:72rpx;line-height:72rpx;border-radius:36rpx;margin-bottom:12rpx;text-align:center;">立即领取</navigator>
+        </view>
+      </block>
+      <block wx:if="{{turnbale_eventtype==9}}">
+        <view class='bags'>
+          <image src="https://qmzgcdn.boc7.net/test/closemore.png" alt="" class="closepos" id="pumpreplymes" bindtap='closemask'></image>
+          <image src="{{gamedetail.show_img}}" style="width:460rpx;height:240rpx;"></image>
+          <view style="font-family:MicrosoftYaHei;font-size:32rpx;color:#FFF0B6;display:flex;flex-direction:column;justify-content:center;align-items:center;margin-top:46rpx;">
+            <text>恭喜你抽中了</text>
+            <text style="font-size:28rpx;color:#ffffff;">{{gamedetail.game_name}}</text>
+          </view>
+          <button class="receiveredem" style="background-image:url('https://qmzgcdn.boc7.net/test/btn_imminvite.png');background-size:332rpx 80rpx;background-position:-6rpx -4rpx;color:#FF3333;width:320rpx;height:72rpx;line-height:72rpx;border-radius:36rpx;margin-bottom:12rpx;text-align:center;" id="getreplymes" open-type='contact' session-from='{{gamedetail.num}}'>回复1领取奖励</button>
+        </view>
+      </block>
+    </block>
+  </view>
+</view>
+<view style="top:0;background:#333333;width:100%;height:100%;position:fixed;z-index:1;" hidden="{{loadingHidden}}">
+  <loading>
+      加载中...
+  </loading>
+</view>

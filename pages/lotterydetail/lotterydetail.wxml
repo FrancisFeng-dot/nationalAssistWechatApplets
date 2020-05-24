@@ -1,0 +1,372 @@
+<!--pages/lotterydetail/lotterydetail.wxml-->
+<view class="container">
+  <view class="goodsdetail">
+    <image src="{{goodsdetail.cover_img}}"></image>
+    <view>
+      <text>奖品：{{goodsdetail.goods_name}}</text>
+      <text>{{goodsdetail.open_time}}开奖</text>
+    </view>
+    <block wx:if="{{goodsdetail.type}}">
+    <view class="sponsordetail">{{goodsdetail.sponsor_name}} 赞助</view>
+    </block>
+    <navigator url="../index/index" open-type="reLaunch" class="suspensionpiece"></navigator>
+    <view></view>
+  </view>
+  <block wx:if="{{goodsdetail.type}}">
+  <view style="width: 100%;height: 120rpx;display: flex;justify-content: center;align-items: center;background: #ffffff;">
+    <block wx:if="{{goodsdetail.type==1}}">
+    <navigator target="miniProgram" path="{{goodsdetail.url}}" app-id="{{goodsdetail.appid}}" class="sponsor">
+      <view>
+        <text>{{goodsdetail.sponsor_name}}</text>
+        <text>赞助</text>
+      </view>
+      <view>
+        <text>立即前往</text>
+        <image src="https://qmzgcdn.boc7.net/test/listicon_in2.png"></image>
+      </view>
+    </navigator>
+    </block>
+    <block wx:if="{{goodsdetail.type==2}}">
+    <view bindtap="eventtipset" data-eventtype="6" data-params="{{goodsdetail.num}}" class="sponsor">
+      <view>
+        <text>{{goodsdetail.sponsor_name}}</text>
+        <text>赞助</text>
+      </view>
+      <view>
+        <text>立即前往</text>
+        <image src="https://qmzgcdn.boc7.net/test/listicon_in2.png"></image>
+      </view>
+    </view>
+    </block>
+  </view>
+  </block>
+  <view style="width:700rpx;margin:20rpx auto;border-radius:12rpx;overflow:hidden;">
+    <ad unit-id="adunit-2e64cfc779345a53"></ad>
+  </view>
+  <view class="freelottery">
+    <block wx:if="{{whetherdrawprize==2}}">
+      <block wx:if="{{is_partin==0}}">
+        <form bindsubmit='freepartinlottery' report-submit="true">
+          <button class="freepartbutton" formType="submit">免费参与抽奖</button>
+        </form>
+      </block>
+      <block wx:if="{{is_partin==1}}">
+        <view class="afterlottery_tip">
+          <button style="background:#ffffff;color:#FE4141;">等待开奖</button>
+          <button bindtap="eventtipset" data-eventtype="7">邀请好友</button>
+          <view wx:if="{{teamwintip}}">
+            <text>邀请好友参与，中奖概率翻倍</text>
+            <button bindtap='closeteamtip'>我知道了</button>
+          </view>
+        </view>
+      </block>
+    </block>
+    <block wx:if="{{whetherdrawprize==1&&hastoken==1}}">
+      <block wx:if="{{whethertowin==0}}">
+        <view class="winresult" style="color:#999999;">很遗憾，未中奖</view>
+      </block>
+      <block wx:if="{{whethertowin==1}}">
+        <view class="winresult">恭喜您，已中奖</view>
+      </block>
+    </block>
+    <block wx:if="{{(whetherdrawprize==2&&(is_partin==1||share_userid))||(whetherdrawprize==1)}}">
+    <!-- 这两处地方，包含的情况{当处于抽奖已结束的情况，当处于未结束的情况{当处于已经登录的情况，当处于从分享界面进入的情况}} -->
+      <view class="partgrouptitle">
+        <image src="https://qmzgcdn.boc7.net/test/dottedline_invite.png"></image>
+        <block wx:if="{{whetherdrawprize==2&&(is_partin==1||share_userid)}}">
+          <text>邀请好友概率最多增加6倍</text>
+        </block>
+        <block wx:if="{{whetherdrawprize==1}}">
+          <text>中奖名单</text>
+        </block>
+        <image src="https://qmzgcdn.boc7.net/test/dottedline_invite.png"></image>
+      </view>
+    </block>
+    <block wx:if="{{(whetherdrawprize==2&&(is_partin==1||share_userid))||(whetherdrawprize==1)}}">
+    <!-- 这两处地方，包含的情况{当处于抽奖已结束的情况，当处于未结束的情况{当处于已经登录的情况，当处于从分享界面进入的情况}} -->
+      <view class="partgroupmsg">
+        <block wx:if="{{whetherdrawprize==2&&(is_partin==1||share_userid)}}">
+          <view wx:for="{{partinnerdetails}}" wx:for-index="key">
+            <view>
+              <view style="border:{{item.uid>0?'2rpx solid #FE9595;':'0;'}}">
+                <image src="{{item.uid>0?item.headimgurl:'https://qmzgcdn.boc7.net/test/waitforno.png'}}"></image>
+              </view>
+              <text>{{item.uid>0?item.nickname:'中奖概率x'+key*2}}</text>
+              <button hidden="{{key!=0}}">发起人</button>
+            </view>
+            <image src="https://qmzgcdn.boc7.net/test/invite_double.png" hidden="{{key>2}}"></image>
+          </view>
+        </block>
+        <block wx:if="{{whetherdrawprize==1}}">
+          <view wx:for="{{winnerdetails}}" wx:for-index="key" style="margin:0 -74rpx;z-index:{{5-key}};">
+            <view style="max-width:500rpx;">
+              <view bindtap="eventtipset" data-eventtype="1">
+                <image src="{{item.headimgurl}}"></image>
+              </view>
+              <text style="height:30rpx;">{{key!=0?'':item.nickname}}</text>
+              <!-- <button hidden="{{key!=0||winnerdetails.length==1}}">组团</button> -->
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+    <view class="partnum">
+      已有<text>{{partinperson}}</text>人参加
+    </view>
+    <view class="participants">
+      <view wx:for="{{partinportrait}}">
+        <image src="{{item}}"></image>
+      </view>
+    </view>
+    <view class="prizedesc">
+      <button bindtap="eventtipset" data-eventtype="5">抽奖说明</button>
+      <button hidden='{{whethertowin==0}}' bindtap="submitredempt" class="receivefreegift">领取奖励</button>
+    </view>
+  </view>
+  <navigator url="../index/index" open-type="reLaunch" style="width:690rpx;height:170rpx;border-radius:29rpx;margin:30rpx auto;background-image:url('https://qmzgcdn.boc7.net/test/free_getmoneyandprop1.gif');background-size:100% 100%;"></navigator>
+  <view style="font-family:MicrosoftYaHei;font-size:28rpx;color:#666666;margin:0 0 30rpx 30rpx;">每试玩一款游戏可增加一定抽奖概率</view>
+  <view class="gamelist">
+    <view>
+      <view wx:for="{{gamelist}}" wx:for-index="key">
+        <block wx:if="{{item.type==0}}">
+          <navigator bindtap='clickgame' data-index="{{key}}" target="miniProgram" path="{{item.game_url}}" app-id="{{item.game_appid}}">
+            <view style="background-image:url('{{item.big_img}}')">
+              <block wx:if="{{item.has_play==1}}">
+                <view></view>
+                <view>已领取</view>
+              </block>
+            </view>
+            <text>{{item.game_name}}</text>
+          </navigator>
+        </block> 
+        <block wx:if="{{item.type==1}}">
+          <view bindtap='clickgame' data-index="{{key}}">
+            <view style="background-image:url('{{item.big_img}}')">
+              <block wx:if="{{item.has_play==1}}">
+                <view></view>
+                <view>已领取</view>
+              </block>
+            </view>
+            <text>{{item.game_name}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class="lotterychance">
+    <view class="morelottery">
+      <view></view>
+      <text>更多抽奖机会</text>
+      <view></view>
+    </view>
+    <!-- <button class="remainfrequency">剩余次数：{{remaindraws}}</button> -->
+    <view class="lotterysystem" bindtap="randomlottery">
+      <view style="background-image:url({{circlegoods[0].big_img}});"></view>
+      <view style="background-image:url({{circlegoods[1].big_img}});"></view>
+      <view style="background-image:url({{circlegoods[2].big_img}});"></view>
+      <view style="background-image:url({{circlegoods[3].big_img}});"></view>
+      <!-- <block wx:if="{{Frequent_clicks==0}}">
+        <view id="turntablelottery" bindtap="randomlottery" style="background-image:url('https://qmzgcdn.boc7.net/test/turntable_immediate3.png');position:relative;">
+          <image src="https://qmzgcdn.boc7.net/test/turntablemask.png" style="width: 100%;height: 100%;position:absolute;top:0;left:0;" hidden="{{remaindraws!=0}}"></image>
+        </view>
+      </block>
+      <block wx:if="{{Frequent_clicks==1}}"> -->
+        <view style="background-image:url('https://qmzgcdn.boc7.net/test/turntable_immediate2.png');position:relative;background-size:274rpx 248rpx;background-position:-48rpx -48rpx;">
+          <!-- <image src="https://qmzgcdn.boc7.net/test/turntablemask.png" style="width: 100%;height: 100%;position:absolute;top:0;left:0;" hidden="{{remaindraws!=0}}"></image> -->
+        </view>
+      <!-- </block> -->
+      <view style="background-image:url({{circlegoods[4].big_img}});"></view>
+      <view style="background-image:url({{circlegoods[5].big_img}});"></view>
+      <view style="background-image:url({{circlegoods[6].big_img}});"></view>
+      <view style="background-image:url({{circlegoods[7].big_img}});"></view>
+    </view>
+  </view>
+  <view class='mask' hidden='{{masklayer}}'>
+    <block wx:if="{{eventtype==1}}">
+      <view class='bags' style="background:#FEF3D6;">
+        <image src="https://qmzgcdn.boc7.net/test/close_layer1.png" class="closepos" bindtap='closemask'></image>
+        <text class="colorc88_size24">中奖者</text>
+        <view class="groupwin">
+          <view>
+            <image src="{{winnerdetails[0].headimgurl}}"></image>
+          </view>
+          <text>{{winnerdetails[0].nickname}}</text>
+        </view>
+        <text class="colorc88_size24">中奖者将获得一份奖品</text>
+        <!-- <view class="partgroupmsg">
+          <view wx:for="{{winnerdetails}}" wx:for-index="key" wx:if="{{key!=0}}">
+            <view>
+              <image src="{{key!=0?item.headimgurl:''}}"></image>
+            </view>
+            <text>{{key!=0?item.nickname:''}}</text>
+          </view>
+        </view> -->
+      </view>
+    </block>
+    <block wx:if="{{eventtype==2}}">
+      <block wx:if="{{lottery_eventtype==0}}">
+        <view class='bags' style="background-image:url('https://qmzgcdn.boc7.net/test/lottery_layer1.png');background-size:100% 100%;width:540rpx;height:610rpx;padding:236rpx 0 0 0;justify-content:center;">
+          <image src="https://qmzgcdn.boc7.net/test/close_layer2.png" class="closepos" bindtap='closemask'></image>
+          <view style="display:flex;justify-content:center;align-items:flex-start;">
+            <view class="nickname_headimg" style="margin:0 16rpx;margin-bottom:38rpx;" wx:for="{{winnerdetails}}" wx:for-index="key">
+              <view>
+                <image src="{{item.headimgurl}}"></image>
+              </view>
+              <text>{{item.nickname}}</text>
+            </view>
+          </view>
+          <button class="confirm_button" bindtap='closemask'>我知道了</button>
+        </view>
+      </block>
+      <block wx:if="{{lottery_eventtype==1}}">
+        <view class='bags' style="background-image:url('https://qmzgcdn.boc7.net/test/lottery_layer2.png');background-size:100% 100%;width:540rpx;height:610rpx;padding:236rpx 0 0 0;">
+          <image src="https://qmzgcdn.boc7.net/test/close_layer2.png" class="closepos" bindtap='closemask'></image>
+          <button class="confirm_button receivefreegift" style="width360rpx;" bindtap="eventtipset" data-eventtype="4" data-prizetype="1">领取奖品</button>
+        </view>
+      </block>
+    </block>
+    <!-- <block wx:if="{{eventtype==3}}">
+      <block wx:if="{{turnbale_eventtype==1}}">
+        <view class='bags' style="background-image:url('https://qmzgcdn.boc7.net/test/turntable_layer2.png');background-size:100% 100%;width:560rpx;padding:206rpx 0 0 0;">
+          <image src="https://qmzgcdn.boc7.net/test/close_layer2.png" class="closepos" bindtap='closemask'></image>
+          <view class="won">
+            <text style="color:#333333;font-size:26rpx;margin-top:16rpx;">恭喜您！获得30元省呗贷款免息券
+(限新人使用)
+            </text>
+          <button class="receiveredem" style="width:300rpx;" open-type='contact' session-from='shengbei' bindtap='closemask'>领取奖品</button>
+          <text class="size22_color666" style='padding-bottom:16rpx;'>领取方式：客服会话页面回复“1”领取奖品</text>
+          </view>
+        </view>
+      </block>
+      <block wx:if="{{turnbale_eventtype==2}}">
+        <view class='bags' style="background-image:url('https://qmzgcdn.boc7.net/test/turntable_layer1.png');background-size:100% 100%;width:560rpx;padding:206rpx 0 0 0;">
+          <image src="https://qmzgcdn.boc7.net/test/close_layer2.png" class="closepos" bindtap='closemask'></image>
+          <view class="won">
+            <text style="color:#333333;font-size:26rpx;margin-top:16rpx;">恭喜您！获得《三国无双》新手金币礼包</text>
+            <view style='display:flex;justify-content:content;align-items:center;height:74rpx;'>
+              <image src='https://qmzgcdn.boc7.net/test/gift.png' style="width:60rpx;height:74rpx;"></image>
+              <text style="color:#333333;font-size:26rpx;padding-left:12rpx;">x1</text>
+            </view>
+          <button class="receiveredem" bindtap="sanguo" data-text="ddd3333">复制兑换码并领取</button>
+          <text class="size22_color666">兑换码：ddd3333</text>
+          <text class="size22_color666" style='padding-bottom:16rpx;'>领取方式：进入游戏，点击上方按钮-礼包-输入礼包码</text>
+          </view>
+        </view>
+      </block>
+      <block wx:if="{{turnbale_eventtype==3}}">
+        <view class='bags' style="background-image:url('https://qmzgcdn.boc7.net/test/turntable_layer3.png');background-size:100% 100%;width:560rpx;padding:206rpx 0 0 0;">
+          <image src="https://qmzgcdn.boc7.net/test/close_layer2.png" class="closepos" bindtap='closemask'></image>
+          <view class="won">
+            <text style="color:#333333;font-size:26rpx;margin-top:16rpx;">恭喜您！获得腾讯视频月卡</text>
+          <button class="receiveredem" style="width:300rpx;margin-bottom:96rpx;" bindtap="eventtipset" data-eventtype="4" data-prizetype="2">领取奖品</button>
+          </view>
+        </view>
+      </block>
+      <block wx:if="{{turnbale_eventtype==4}}">
+        <view class='bags' style="background-image:url('https://qmzgcdn.boc7.net/test/turntable_layer4.png');background-size:100% 100%;width:560rpx;padding:206rpx 0 0 0;">
+          <image src="https://qmzgcdn.boc7.net/test/close_layer2.png" class="closepos" bindtap='closemask'></image>
+          <view class="won">
+            <text style="color:#333333;font-size:26rpx;margin-top:16rpx;">恭喜您！获得28元王者皮肤</text>
+          <button class="receiveredem" style="width:300rpx;margin-bottom:96rpx;" bindtap="eventtipset" data-eventtype="4" data-prizetype="2">领取奖品</button>
+          </view>
+        </view>
+      </block>
+      <block wx:if="{{turnbale_eventtype==5}}">
+        <view class='bags' style="background-image:url('https://qmzgcdn.boc7.net/test/turntable_layer5.png');background-size:100% 100%;width:560rpx;padding:206rpx 0 0 0;">
+          <image src="https://qmzgcdn.boc7.net/test/close_layer2.png" class="closepos" bindtap='closemask'></image>
+          <view class="won">
+            <text style="color:#333333;font-size:26rpx;margin-top:16rpx;">恭喜您！获得10Q币</text>
+          <button class="receiveredem" style="width:300rpx;margin-bottom:96rpx;" bindtap="eventtipset" data-eventtype="4" data-prizetype="2">领取奖品</button>
+          </view>
+        </view>
+      </block>
+      <block wx:if="{{turnbale_eventtype==6}}">
+        <view class='bags' style="background-image:url('https://qmzgcdn.boc7.net/test/turntable_layer6.png');background-size:100% 100%;width:560rpx;padding:206rpx 0 0 0;">
+          <image src="https://qmzgcdn.boc7.net/test/close_layer2.png" class="closepos" bindtap='closemask'></image>
+          <view class="won">
+            <text style="color:#333333;font-size:26rpx;margin-top:16rpx;">恭喜您！获得288元红包</text>
+          <button class="receiveredem" style="width:300rpx;margin-bottom:96rpx;" bindtap="eventtipset" data-eventtype="4" data-prizetype="2">领取奖品</button>
+          </view>
+        </view>
+      </block>
+    </block> -->
+    <block wx:if="{{eventtype == 4}}">
+      <form bindsubmit='submitinfo' report-submit="true">
+        <view class="bags" style="width:580rpx;height: 630rpx;padding:0 32rpx 30rpx;background:#ffffff;">
+          <image src="https://qmzgcdn.boc7.net/test/exchange_info_title@3x.png" class="converttitle"></image>
+          <image src="https://qmzgcdn.boc7.net/test/close.png" class="closeconvert" bindtap="closemask"></image>
+            <view class="size26_color666" style="margin-top:46rpx;">
+              <view class="flex_input"><text>微信号：</text><input name="input1"/></view>
+              <view class="flex_input"><text>微信昵称：</text><input name="input2"/></view>
+              <view class="flex_input"><text>QQ账号：</text><input name="input3" placeholder="添加微信失败会充值Q币处理" placeholder-style="color:#B3B3B3;font-size:24rpx;margin-left:22rpx;"/></view>
+            </view>
+            <block wx:if="{{submitswitch == 1}}">
+              <button class="subscription" formType="submit" id="confirm_button">
+                <text>提交</text>
+              </button>
+            </block>
+            <block wx:if="{{submitswitch == 2}}">
+              <button class="subscription" style="background: #DEDEDE;">
+                <text>提交</text>
+              </button>
+            </block>
+          <text class="size22_color999">
+          1、请确认账号填写正确再提交；
+2、提交后5个工作日内收到奖励，请耐心等待；
+3、由于个人原因填写错误，微信添加失败的情况下会直接充值与奖品等额的Q币。
+          </text>
+        </view>
+      </form>
+    </block>
+    <block wx:if="{{eventtype == 5}}">
+      <view class="bags" style="width:620rpx;height: 540rpx;padding:48rpx 0;background:#ffffff;">
+        <image src="https://qmzgcdn.boc7.net/test/close_layer1.png" class="closepos" bindtap='closemask'></image>
+        <text class="size30_color333">抽奖规则</text>
+        <text class="size26_color333" style="padding:0 44rpx;line-height:50rpx;">1.用户邀请好友参与抽奖，每邀请一个好友抽中概率翻倍；
+2.开奖后，中奖用户请在24小时内填写手机、微信和QQ账号。提交兑换信息后，5个工作日内收到奖品。
+3.最终解释权归全民助攻所有。
+        </text>
+      </view>
+    </block>
+    <block wx:if="{{eventtype == 6}}">
+      <view class='bags' style="width:600rpx;height: 300rpx;padding:70rpx 0 20rpx;background:#ffffff;">
+        <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closepos" bindtap='closemask'></image>
+        <text class="size26_color333">在客服会话中回复“1”</text>
+        <button open-type="contact" class="contact_confirm" session-from='{{contactparams}}'>确定</button>
+      </view>
+    </block>
+    <block wx:if="{{eventtype == 7}}">
+      <view class="share_button">
+        <button open-type='share' id="invitefriends">邀请微信好友</button>
+        <navigator id="generateimage" url="{{hastoken==1?'../sharepng/sharepng?id='+lotteryid+'&&userid='+userid+'&&nickname='+partinnerdetails[0].nickname+'&&headimg='+partinnerdetails[0].headimgurl+'&&gift_img='+goodsdetail.big_img+'&&gift_name='+goodsdetail.goods_name+'&&gift_time='+goodsdetail.open_time:'../login/login'}}" open-type="navigate" style="line-height:100rpx;text-align:center;">生成分享图片</navigator>
+        <button style="margin-top:20rpx;" bindtap="closemask">取消</button>
+      </view>
+    </block>
+    <block wx:if="{{eventtype == 8}}">
+    <view class="bags" style="height: 480rpx;padding:64rpx 0;background:#ffffff;">
+      <text class="size30_color333">温馨提示</text>
+      <text class="size28_color333" style="text-align:center;">需要开启微信用户授权</text>
+      <view style="display:flex;">
+          <button class="subscription" style="background:#B3B3B3;width:190rpx;margin-top:0;" bindtap='closemask'>
+            <text>再想想</text>
+          </button>
+          <button id="authorization" class="subscription" open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo" wx:if="{{canIUse}}" style="margin-left:30rpx;width:190rpx;margin-top:0;">
+            <text>确定</text>
+          </button>
+      </view>
+    </view>
+    </block>
+    <block wx:if="{{eventtype == 9}}">
+      <view class='bags' style="width:600rpx;height: 300rpx;padding:70rpx 0 20rpx;background:#ffffff;">
+        <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closepos" bindtap='closemask'></image>
+        <text class="size26_color333">已达邀请上限</text>
+        <navigator url="../lotterydetail/lotterydetail?id={{lotteryid}}" open-type="navigate" style="line-height:68rpx;text-align:center;" class="contact_confirm">发起抽奖</navigator>
+      </view>
+    </block>
+  </view>
+</view>
+<view style="top:0;background:#333333;width:100%;height:100%;position:fixed;z-index:1;" hidden="{{loadingHidden}}">
+  <loading>
+      加载中...
+  </loading>
+</view>

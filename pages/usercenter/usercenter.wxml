@@ -1,0 +1,115 @@
+<!--pages/usercenter/usercenter.wxml-->
+<view class="container">
+  <view style="box-sizing: border-box;padding: 26rpx 0 0 40rpx;background:#ffffff;">
+    <view class="userinfo">
+      <view>
+        <view>
+          <block wx:if="{{hastoken==0}}">
+            <image src="https://qmzgcdn.boc7.net/test/userheadbackimg.png"></image>
+          </block>
+          <block wx:if="{{hastoken==1}}">
+            <image src="{{user.headimg}}"></image>
+          </block>
+        </view>
+        <view>
+          <text>{{user.nickname}}</text>
+          <text>我的收益：{{totalqcoin}}元</text>
+        </view>
+      </view>
+      <navigator class="extractbutton" style="margin-top:{{hastoken==0?'10rpx':'32rpx'}};" url="{{hastoken==1?'../extractq/extractq':'../login/login'}}" open-type="navigate">我要提现</navigator>
+      <!-- <view>
+        <image src="https://qmzgcdn.boc7.net/test/qcointipimg.png"></image>
+      </view> -->
+    </view>
+    <view class="myrecord">
+      <navigator url="{{hastoken==1?'../combatrecord/combatrecord':'../login/login'}}" open-type="navigate">
+        <view>
+          <image src="https://qmzgcdn.boc7.net/test/listicon_combat.png"></image><text>战力记录</text>
+        </view>
+        <image src="https://qmzgcdn.boc7.net/test/listicon_in.png"></image>
+        <view class="thinline"></view>
+      </navigator>
+       <navigator url="{{hastoken==1?'../redemption/redemption':'../login/login'}}" open-type="navigate">
+        <view>
+          <image src="https://qmzgcdn.boc7.net/test/listicon_exchange.png"></image><text>兑换记录</text>
+        </view>
+        <image src="https://qmzgcdn.boc7.net/test/listicon_in.png"></image>
+        <view class="thinline"></view>
+      </navigator>
+      <navigator url="../exchangemall/exchangemall" open-type="navigate">
+        <view>
+          <image src="https://qmzgcdn.boc7.net/test/mallicon.png"></image><text>兑换商城</text>
+        </view>
+        <image src="https://qmzgcdn.boc7.net/test/listicon_in.png"></image>
+        <view class="thinline"></view>
+      </navigator>
+      <!-- <button bindtap="replyone" data-params="customer_center">
+        <view>
+          <image src="https://qmzgcdn.boc7.net/test/listicon_customer.png"></image><text>联系客服</text>
+        </view>
+        <image src="https://qmzgcdn.boc7.net/test/listicon_in.png"></image>
+        <view class="thinline"></view>
+      </button> -->
+      <navigator url="../feedback/feedback" open-type="navigate">
+        <view>
+          <image src="https://qmzgcdn.boc7.net/test/feedbackicon.png"></image><text>意见反馈</text>
+        </view>
+        <image src="https://qmzgcdn.boc7.net/test/listicon_in.png"></image>
+        <view class="thinline"></view>
+      </navigator>
+    </view>
+</view>
+<button class="signin_assist" bindtap="replyone" data-params="join">加入助攻群</button>
+  <view class="recommendpro">
+    <!-- <text>每试玩一个提升</text><text style="color:#FE4141;">{{needbattle}}</text><text>点战力</text> -->
+  </view>
+  <view class="gamelist">
+    <view>
+      <view wx:for="{{gamelist}}" wx:for-index="key" class="clickjoingame">
+        <block wx:if="{{item.type==0}}">
+          <navigator bindtap='clickgame' data-index="{{key}}" target="miniProgram" path="{{item.game_url}}" app-id="{{item.game_appid}}">
+            <view style="background-image:url('{{item.big_img}}')">
+              <block wx:if="{{item.has_play==1}}">
+                <view></view>
+                <view>已领取</view>
+              </block>
+            </view>
+            <text>{{item.game_name}}</text>
+          </navigator>
+        </block> 
+        <block wx:if="{{item.type==1}}">
+          <view bindtap='clickgame' data-index="{{key}}">
+            <view style="background-image:url('{{item.big_img}}')">
+              <block wx:if="{{item.has_play==1}}">
+                <view></view>
+                <view>已领取</view>
+              </block>
+            </view>
+            <text>{{item.game_name}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class='mask' hidden='{{masklayer}}'>
+    <view class='bags'>
+    <block wx:if="{{event==1}}">
+      <text>试玩成功，{{needbattle}}战力已存入战力余额</text>
+      <button bindtap='closemask'>确定</button>
+    </block>
+    <block wx:if="{{event==2}}">
+      <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closepos" bindtap='closemask'></image>
+      <text>在客服会话中回复“1”</text>
+      <button open-type="contact" session-from="{{contactparams}}" id="confirm_join">确定</button>
+    </block>
+    </view>
+  </view>
+  <view style="width:700rpx;margin:0 auto;margin-bottom:36rpx;border-radius:12rpx;overflow:hidden;">
+    <ad unit-id="adunit-58a8019420aaefd5"></ad>
+  </view>
+</view>
+<view style="top:0;background:#333333;width:100%;height:100%;position:fixed;z-index:1;" hidden="{{loadingHidden}}">
+  <loading>
+      加载中...
+  </loading>
+</view>

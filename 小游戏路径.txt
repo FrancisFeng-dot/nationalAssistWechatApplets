@@ -1,0 +1,58 @@
+三国无双APPID：wxd5d38ed289985e2f
+路径：?scene=chid:1031chid14,subchid:sg003
+
+传奇来了APPID：wx79ade44c39cefc7f
+路径：?chid=2020&subchid=124
+
+西游：wx78caa30cd32c16b9
+路径：?channel=mengmob28
+
+封神：wxd101b6b8f64db085
+封神：pages/index/index?from=wxcps&tag=42qkg-wezz pages/index/index?from=wxcps&tag=42qkg-6ymo
+
+
+抽奖超人：wxe5d6fb5f83c474d4
+路径：pages/index/index?appkey=17b64a5be8b7d0d2647a7c82a782432e&adSpaceKey=0121eab3f653898a1c41292337d28cd5
+
+美花花：wxd27fdd81133fae56 
+路径：pages/index/index
+
+
+车主福利：wx2b9f47155e3c55b8
+路径：pages/index/index?track=quanminzhugong0815
+
+推啊：wxa34a2b57ee0db105
+路径：/pages/activity/index?appKey=3jyJTfMzHXj3vpthmVae6P9UwyPS&slotId=195130
+
+方块球
+url: ?appId=100001&amp;a=1&b=2
+appid: wx5ec3f4bdf677b97b
+
+微保
+url: pages/base/redirect/index?routeKey=PROMOTION_GIFT_PACKAGE&p=PA01&s=act_travel_share&wtagid=104.72.43
+appid: wx06a561655ab8f5b2
+
+
+游戏名称：风流霸业
+
+appid：wxa331708430664298
+
+跳转path：?channel=pdl&via=357
+
+
+游戏名称：英雄三国志
+
+appid：wx2cc42f53dca45c0e
+
+一句话简介：怒战三国群英，乱世一手掌控！
+
+跳转path：/pages/index/index?sg_key=357
+
+
+进化吧精灵
+wx52966cd958bcd65b
+pages/index/index?Ads=jimmy&AdsPos=box&tgt=aladin
+
+后台网址：http://platform.jishu.legaogame.com/index
+账号密码一致：qmzg357
+

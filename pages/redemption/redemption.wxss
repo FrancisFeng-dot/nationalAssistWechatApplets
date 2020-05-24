@@ -1,0 +1,105 @@
+/* pages/redemption/redemption.wxss */
+page{
+  background: #F5F5F5;
+}
+
+.continer{
+  display: flex;
+  padding-top: 15px;
+  flex-direction: column;overflow-y:scroll;position: relative;
+}
+
+.mask{
+  margin: auto;
+  margin-top:262rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+}
+
+.mask>image{
+  width: 148rpx;
+  height: 148rpx;
+}
+
+.mask>text{
+  font-family: MicrosoftYaHei;
+  font-size:28rpx;
+  color:#666666;
+  margin-top: 52rpx;
+}
+
+.box1{
+  background: white;
+  width:90%;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  border-radius:10rpx;
+  position: relative;
+}
+
+.box1>image{
+  position: absolute;
+  top:0;
+  right:0;
+  width:118rpx;
+  height:118rpx;
+}
+
+.box-header{
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  align-items:center;
+  height: 35px;
+  margin-left: 40rpx;
+  margin-top: 30rpx;
+}
+.box-header>image{
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+.box-header>text{
+  font-size:32rpx;
+  color:#333333;
+}
+.box-body{
+  display: flex;
+  flex-direction: row;
+  margin-top: 30rpx;
+  margin-left: 30rpx;
+}
+.box-body-left,.box-body-right{
+  display: flex;
+  flex-direction: column;
+  margin-left: 15rpx;
+}
+.box-body-left{
+  width: 120rpx;
+}
+.box-body-right{
+  width: 470rpx;
+}
+.box-body-left>text{
+  margin-bottom: 20rpx;
+  font-size:26rpx;
+  color:#666666;
+  height:36rpx;
+}
+.box-body-right>text{
+   margin-bottom: 20rpx;
+  font-size:26rpx;
+  color:#333333;
+  height:36rpx;
+}
+
+.box-body-right>text:last-child{
+  height:auto;
+}
+
+.right-special{
+  color:#FF4141;
+}

@@ -1,0 +1,70 @@
+<!--pages/creditexchange/creditexchange.wxml-->
+<view class='container'>
+  <text style="color:#FF7D4F;font-size:24rpx;margin-top:24rpx;">温馨提示：请先查询移动积分余额再进行兑换~</text>
+  <view class="balanceshow">
+    <text>手机积分余额</text>
+    <text>{{totalQ<0?'--':totalQ}}</text>
+    <block wx:if="{{hastoken==0}}">
+      <navigator url='../login/login' open-type="navigate">积分查询</navigator>
+    </block>
+    <block wx:if="{{hastoken==1}}">
+      <button bindtap='closemask' id="inquirescore">积分查询</button>
+    </block>
+  </view>
+  <view class="mobilegoods_detail">
+    <view>
+      <view>
+        <image src="https://qmzgcdn.boc7.net/test/mobilegoods_battle.png"></image>
+      </view>
+      <view>
+        <text>{{goods_detail.battle_value}}战力</text>
+        <text>价值：{{goods_detail.money}}元</text>
+        <text>{{goods_detail.mobile_points}}移动积分</text>
+      </view>
+    </view>
+    <block wx:if="{{prevent_freclick==0}}">
+      <form bindsubmit='exchange_goods' report-submit="true">
+        <button formType="submit" id="exchangepower">移动积分兑换战力</button>
+      </form>
+    </block>
+    <block wx:if="{{prevent_freclick==1}}">
+      <button>移动积分兑换战力</button>
+    </block>
+  </view>
+  <view style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start;margin-top:150rpx;margin-bottom:20rpx;">
+    <text style="color:#666666;font-size:26rpx;">兑换流程：</text>
+    <text style="color:#999999;font-size:24rpx;line-height:36rpx;margin-top:28rpx;">1、查询积分余额
+2、点击兑换按钮，兑换成功后可在我的战力余额中查看
+    </text>
+    <text style="color:#999999;font-size:24rpx;margin-top:28rpx;">(兑换过程中遇到任何问题，可咨询客服电话：4006680091)
+    </text>
+  </view>
+  <view class='mask' hidden='{{masklayer}}'>
+    <view class='bags' style="width:560rpx;height: 632rpx;margin: 200rpx auto;padding:0;border-radius: 16rpx;">
+      <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closepos" bindtap='closemask'></image>
+      <form bindsubmit='requestinquire' report-submit="true" style="width:100%;height:100%;">
+        <view class="mobile_query">
+          <image src="https://qmzgcdn.boc7.net/test/china_mobileimg.png"></image>
+          <view>
+            <view>
+              <input name="input1" placeholder="请输入移动手机号" placeholder-style="color:#CCCCCC;font-size:28rpx;"></input>
+            </view>
+            <view>
+              <input name="input2" placeholder="请输入验证码" placeholder-style="color:#CCCCCC;font-size:28rpx;"></input>
+              <block wx:if="{{beforesend==0}}">
+                <button class="requestcode" formType="submit" data-type="1">获取验证码</button>
+              </block>
+              <block wx:if="{{beforesend==1}}">
+                <view style="position:absolute;right:0;top:0;bottom:0;margin:auto;color:#CCCCCC;font-size:28rpx;line-height:90rpx;">{{fewsecond}}s</view>
+              </block>
+              <block wx:if="{{beforesend==2}}">
+                <button class="requestcode" formType="submit" data-type="1">重新获取</button>
+              </block>
+            </view>
+          </view>
+          <button formType="submit" data-type="2">查询</button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>

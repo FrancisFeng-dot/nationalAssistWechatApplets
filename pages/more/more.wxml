@@ -1,0 +1,88 @@
+<!--pages/more/more.wxml-->
+<view class='container'>
+  <swiper autoplay="true" interval="3000" duration="2000" circular="true" indicator-dots="true" class="raiders">  
+    <block wx:for="{{activebanner}}" wx:for-index="key"> 
+      <block wx:if="{{item.type==1}}">
+        <swiper-item data-index="{{key}}">  
+          <button data-params="{{item.num}}" style="background-image:url({{item.logo}})" bindtap="replyone" class="swiperitem"></button>
+        </swiper-item>  
+      </block> 
+      <block wx:if="{{item.type==0}}">
+        <swiper-item>  
+          <navigator style="background-image:url({{item.logo}});" class="swiperitem" target="miniProgram" path="{{item.url}}" app-id="{{item.appid}}"></navigator>
+        </swiper-item>  
+      </block>
+    </block>  
+  </swiper>  
+  <view class="gamelisttitle">
+    <image src="https://qmzgcdn.boc7.net/test/icon_hotrecommend.png"></image>
+    <text>热门推荐</text>
+  </view>
+  <view class="gamelist">
+    <view>
+      <view wx:for="{{box}}" wx:for-index="key" wx:if="{{key<4}}" class="reecommendedposition">
+        <block wx:if="{{item.type==0}}">
+          <navigator target="miniProgram" path="{{item.game_url}}" app-id="{{item.game_appid}}">
+            <view style="background-image:url('{{item.big_img}}')"></view>
+            <text>{{item.game_name}}</text>
+          </navigator>
+        </block> 
+        <block wx:if="{{item.type==1}}">
+          <view bindtap='jumpapplet' data-index="{{key}}" data-type="box">
+            <view style="background-image:url('{{item.big_img}}')"></view>
+            <text>{{item.game_name}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="thinline" style="margin:0"></view>
+  </view>
+  <view class="gamelisttitle" style="margin-top:20rpx;padding:24rpx 0 8rpx 30rpx;">
+    <image src="https://qmzgcdn.boc7.net/test/icon_masterexclusive.png"></image>
+    <text>高手专属</text>
+  </view>
+  <view class='box'>
+    <view class='box_son' wx:for='{{box}}' wx:for-index="key" wx:if="{{key>3}}">
+      <block wx:if="{{item.type==0}}">
+        <navigator target="miniProgram" path="{{item.game_url}}" app-id="{{item.game_appid}}">
+          <view>
+            <image src="{{item.big_img}}"></image>
+            <view>
+              <text>{{item.game_name}}</text>
+              <text>{{item.description}}</text>
+            </view>
+          </view>
+          <button>直接玩</button>
+        </navigator>
+      </block> 
+      <block wx:if="{{item.type==1}}">
+        <view bindtap='jumpapplet' data-index="{{key}}" data-type="box">
+          <view>
+            <image src="{{item.big_img}}"></image>
+            <view>
+              <text>{{item.game_name}}</text>
+              <text>{{item.description}}</text>
+            </view>
+          </view>
+          <button>直接玩</button>
+        </view>
+      </block>
+      <view class="thinline"></view>
+    </view>
+  </view>
+  <view class='mask' hidden='{{masklayer}}'>
+    <view class='bags'>
+      <image src="https://qmzgcdn.boc7.net/test/alert_close.png" class="closepos" bindtap='closemask'></image>
+      <text>在客服会话中回复“1”</text>
+      <button open-type="contact" session-from="{{contactparams}}">确定</button>
+    </view>
+  </view>
+  <view style="width:700rpx;margin:20rpx auto;border-radius:12rpx;overflow:hidden;">
+    <ad unit-id="adunit-a6b361205ade3755"></ad>
+  </view>
+</view>
+<view style="top:0;background:#333333;width:100%;height:100%;position:fixed;z-index:1;" hidden="{{loadingHidden}}">
+  <loading>
+      加载中...
+  </loading>
+</view>

@@ -1,0 +1,12 @@
+<!--pages/combatrecord/combatrecord.wxml-->
+<view class="container">
+    <view class="myrecord">
+      <view wx:for="{{scorerecord}}">
+        <view>
+          <text>{{item.type_name}}</text>
+          <text>{{item.ctime}}</text>
+        </view>
+          <text style="color:{{item.color>0?'#FE4141':'#666666'}}">{{item.integrate}}</text>
+      </view>
+    </view>
+</view>

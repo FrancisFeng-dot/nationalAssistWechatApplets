@@ -1,0 +1,47 @@
+<!--pages/assistposter/assistposter.wxml-->
+<view class="container" style="background:{{activename=='王者荣耀'?'#3D275D':(activename=='穿越火线'?'#181106':(activename=='海盗来了'?'#3F898A':(activename=='欢乐斗地主'?'#261505':'')))}};background-image: url({{activename=='王者荣耀'?'https://qmzgcdn.boc7.net/test/poster_kingglory2.jpg':(activename=='穿越火线'?'https://qmzgcdn.boc7.net/test/poster_crossfire2.jpg':(activename=='海盗来了'?'https://qmzgcdn.boc7.net/test/poster_pirate.jpg':(activename=='欢乐斗地主'?'https://qmzgcdn.boc7.net/test/poster_landlord.jpg':'')))}});background-repeat:no-repeat;background-size: 100% 600rpx;padding-top:620rpx;">
+  <view class="referrerto">
+    <view><image src="{{userinfo.headimgurl}}"></image></view>
+    <view><text>{{userinfo.nickname}}</text><text>向您推荐了一个助攻活动</text></view>
+  </view>
+  <view class="hasassist">
+    <block wx:if="{{activename=='王者荣耀'}}">
+    <view style="background-image:url('https://qmzgcdn.boc7.net/test/poster_wzry1.png');">
+      <view>已获助攻<text>{{hasreceivenum}}</text>次</view>
+      <view>已获助攻金额<text>{{hasreceivemoney}}</text>元</view>
+    </view>
+    </block>
+    <block wx:if="{{activename=='穿越火线'}}">
+    <view style="background-image:url('https://qmzgcdn.boc7.net/test/poster_crossfire1.png');">
+      <view>已获助攻<text>{{hasreceivenum}}</text>次</view>
+      <view>已获助攻金额<text>{{hasreceivemoney}}</text>元</view>
+    </view>
+    </block>
+    <block wx:if="{{activename=='海盗来了'}}">
+    <view style="background-image:url('https://qmzgcdn.boc7.net/test/poster_haidao1.png');">
+      <view>已获助攻<text>{{hasreceivenum}}</text>次</view>
+      <view>已获助攻金额<text>{{hasreceivemoney}}</text>元</view>
+    </view>
+    </block>
+    <block wx:if="{{activename=='欢乐斗地主'}}">
+    <view style="background-image:url('https://qmzgcdn.boc7.net/test/poster_doudizhu2.png');">
+      <view>已获助攻<text>{{hasreceivenum}}</text>次</view>
+      <view>已获助攻金额<text>{{hasreceivemoney}}</text>元</view>
+    </view>
+    </block>
+    <view>
+      <image src="{{qr_code}}" style="width: 172rpx;height: 172rpx;border-radius:50%;"></image>
+      <text>长按扫码 参与助攻</text>
+    </view>
+  </view>
+  <view style="width:100%;height:90rpx;line-height:90rpx;background:#ffffff;opacity:0.3;position:fixed;bottom:0;text-align:center;"></view>
+  <text bindtap="saveimg" style="font-family:MicrosoftYaHei;font-size:30rpx;color:#ffffff;position:fixed;bottom:0;width:100%;text-align:center;height:90rpx;line-height:90rpx;">保存图片</text>
+  <view style="width:0px;height:0px;overflow:hidden;position:fixed;bottom:-500px;">
+    <canvas canvas-id="shareCanvas" style="width: 375px;height: 500px;"></canvas>
+  </view>
+</view>
+<view style="top:0;background:#333333;width:100%;height:100%;position:fixed;z-index:1;" hidden="{{loadingHidden}}">
+  <loading>
+      加载中...
+  </loading>
+</view>
